@@ -1,0 +1,455 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-11-05 19:14:13
+count workspace : /Users/edoardobiasio/Desktop/sfml/space
+total files : 87
+total code lines : 66214
+total comment lines : 221
+total blank lines : 620
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |           .cpp|           2426|            167|            385|    3.7|
+   |           .txt|          62519|              0|              0|     94|
+   |             .h|           1237|             47|            229|    1.9|
+   |               |             12|              7|              6|  0.018|
+   |         .plist|             20|              0|              0|  0.030|
+   -------------------------------------------------------------------------
+../Assets/buildingSprites/barracks.jpeg, it is a binary file.
+../Assets/buildingSprites/factory.png, it is a binary file.
+../Assets/buildingSprites/house.jpg, it is a binary file.
+../Assets/buildingSprites/power_plant.jpeg, it is a binary file.
+../Assets/economicSprites/bizcoin.png, it is a binary file.
+../Assets/epicBuildingSprites/dyson.png, it is a binary file.
+../Assets/gameData/buildings.txt, code is 6, comment is 0, blank is 0.
+../Assets/gameData/data.txt, code is 62500, comment is 0, blank is 0.
+../Assets/gameData/spaceshipParts.txt, code is 8, comment is 0, blank is 0.
+../Assets/gameData/spaceships.txt, code is 5, comment is 0, blank is 0.
+../Assets/gui/aspace_demo.otf, it is a binary file.
+../Assets/gui/cursor.png, it is a binary file.
+../Assets/gui/cursor2.png, it is a binary file.
+../Assets/gui/exit.png, it is a binary file.
+../Assets/gui/icon.png, it is a binary file.
+../Assets/gui/loading.png, it is a binary file.
+../Assets/gui/madewithc++.png, it is a binary file.
+../Assets/music/newdawn.wav, it is a binary file.
+../Assets/spaceshipPartsSprites/cannon.png, it is a binary file.
+../Assets/spaceshipPartsSprites/engine.png, it is a binary file.
+../Assets/spaceshipPartsSprites/fuel.png, it is a binary file.
+../Assets/spaceshipPartsSprites/housingShip.jpeg, it is a binary file.
+../Assets/spaceshipPartsSprites/hull.png, it is a binary file.
+../Assets/spaceshipPartsSprites/shield.png, it is a binary file.
+../Assets/spaceshipSprites/cruiser.png, it is a binary file.
+../Assets/spaceshipSprites/cruiserAnimation.png, it is a binary file.
+../Assets/spaceshipSprites/ship.png, it is a binary file.
+../Assets/spaceshipSprites/ship2.png, it is a binary file.
+bin/main, it is a binary file.
+bin/main.dSYM/Contents/Info.plist, code is 20, comment is 0, blank is 0.
+bin/main.dSYM/Contents/Resources/DWARF/main, it is a binary file.
+include/Animation.h, code is 23, comment is 0, blank is 3.
+include/Building.h, code is 26, comment is 0, blank is 8.
+include/BuildingsParser.h, code is 125, comment is 6, blank is 13.
+include/BuildTab.h, code is 53, comment is 5, blank is 12.
+include/Constants.h, code is 41, comment is 1, blank is 16.
+include/DysonSphere.h, code is 18, comment is 0, blank is 7.
+include/EconomicsTab.h, code is 21, comment is 0, blank is 7.
+include/Empire.h, code is 54, comment is 0, blank is 12.
+include/GUI_Alert.h, code is 27, comment is 0, blank is 4.
+include/GUI_Button.h, code is 31, comment is 1, blank is 8.
+include/GUI_Label.h, code is 26, comment is 0, blank is 9.
+include/GUI_Panel.h, code is 17, comment is 0, blank is 5.
+include/Helper.h, code is 19, comment is 0, blank is 4.
+include/Menu.h, code is 21, comment is 0, blank is 6.
+include/Moon.h, code is 23, comment is 1, blank is 4.
+include/Parser.h, code is 13, comment is 1, blank is 6.
+include/Planet.h, code is 31, comment is 2, blank is 7.
+include/PlayerEmpire.h, code is 27, comment is 0, blank is 11.
+include/Research.h, code is 38, comment is 0, blank is 6.
+include/ResearchParser.h, code is 16, comment is 0, blank is 9.
+include/ResearchTab.h, code is 20, comment is 0, blank is 5.
+include/Spaceship.h, code is 45, comment is 0, blank is 7.
+include/SpaceshipBuildTab.h, code is 46, comment is 10, blank is 7.
+include/SpaceshipPart.h, code is 34, comment is 0, blank is 5.
+include/SpaceshipPartParser.h, code is 194, comment is 10, blank is 13.
+include/SpaceshipsParser.h, code is 154, comment is 8, blank is 14.
+include/SpaceshipTab.h, code is 23, comment is 0, blank is 4.
+include/Star.h, code is 25, comment is 1, blank is 6.
+include/StarGUI.h, code is 39, comment is 1, blank is 7.
+include/TimeController.h, code is 7, comment is 0, blank is 4.
+Makefile, code is 12, comment is 7, blank is 6.
+src/Animation.cpp, code is 33, comment is 1, blank is 6.
+src/Building.cpp, code is 18, comment is 1, blank is 5.
+src/BuildTab.cpp, code is 45, comment is 3, blank is 10.
+src/DysonSphere.cpp, code is 16, comment is 0, blank is 12.
+src/EconomicsTab.cpp, code is 30, comment is 0, blank is 5.
+src/Empire.cpp, code is 31, comment is 2, blank is 6.
+src/GUI_Alert.cpp, code is 62, comment is 2, blank is 8.
+src/GUI_Button.cpp, code is 50, comment is 2, blank is 10.
+src/GUI_Label.cpp, code is 22, comment is 0, blank is 5.
+src/GUI_Panel.cpp, code is 32, comment is 0, blank is 8.
+src/main.cpp, code is 546, comment is 105, blank is 133.
+src/Menu.cpp, code is 46, comment is 0, blank is 8.
+src/Moon.cpp, code is 32, comment is 4, blank is 6.
+src/Parser.cpp, code is 798, comment is 9, blank is 37.
+src/Planet.cpp, code is 44, comment is 14, blank is 12.
+src/PlayerEmpire.cpp, code is 54, comment is 2, blank is 10.
+src/Research.cpp, code is 24, comment is 0, blank is 2.
+src/ResearchTab.cpp, code is 10, comment is 0, blank is 2.
+src/Spaceship.cpp, code is 132, comment is 0, blank is 25.
+src/SpaceshipBuildTab.cpp, code is 65, comment is 3, blank is 8.
+src/SpaceshipPart.cpp, code is 9, comment is 0, blank is 1.
+src/SpaceshipTab.cpp, code is 53, comment is 0, blank is 7.
+src/Star.cpp, code is 43, comment is 4, blank is 14.
+src/StarGUI.cpp, code is 229, comment is 15, blank is 44.
+src/TimeController.cpp, code is 2, comment is 0, blank is 1.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-11-07 10:40:25
+count workspace : /Users/edoardobiasio/Desktop/sfml/space
+total files : 88
+total code lines : 66463
+total comment lines : 240
+total blank lines : 631
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |           .cpp|           2463|            170|            390|    3.7|
+   |               |             12|              7|              6|  0.018|
+   |           .txt|          62523|              0|              0|     94|
+   |             .h|           1445|             63|            235|    2.2|
+   |         .plist|             20|              0|              0|  0.030|
+   -------------------------------------------------------------------------
+../Assets/buildingSprites/barracks.jpeg, it is a binary file.
+../Assets/buildingSprites/factory.png, it is a binary file.
+../Assets/buildingSprites/house.jpg, it is a binary file.
+../Assets/buildingSprites/power_plant.jpeg, it is a binary file.
+../Assets/economicSprites/bizcoin.png, it is a binary file.
+../Assets/epicBuildingSprites/dyson.png, it is a binary file.
+../Assets/gameData/buildings.txt, code is 6, comment is 0, blank is 0.
+../Assets/gameData/data.txt, code is 62500, comment is 0, blank is 0.
+../Assets/gameData/researches.txt, code is 4, comment is 0, blank is 0.
+../Assets/gameData/spaceshipParts.txt, code is 8, comment is 0, blank is 0.
+../Assets/gameData/spaceships.txt, code is 5, comment is 0, blank is 0.
+../Assets/gui/aspace_demo.otf, it is a binary file.
+../Assets/gui/cursor.png, it is a binary file.
+../Assets/gui/cursor2.png, it is a binary file.
+../Assets/gui/exit.png, it is a binary file.
+../Assets/gui/icon.png, it is a binary file.
+../Assets/gui/loading.png, it is a binary file.
+../Assets/gui/madewithc++.png, it is a binary file.
+../Assets/music/newdawn.wav, it is a binary file.
+../Assets/spaceshipPartsSprites/cannon.png, it is a binary file.
+../Assets/spaceshipPartsSprites/engine.png, it is a binary file.
+../Assets/spaceshipPartsSprites/fuel.png, it is a binary file.
+../Assets/spaceshipPartsSprites/housingShip.jpeg, it is a binary file.
+../Assets/spaceshipPartsSprites/hull.png, it is a binary file.
+../Assets/spaceshipPartsSprites/shield.png, it is a binary file.
+../Assets/spaceshipSprites/cruiser.png, it is a binary file.
+../Assets/spaceshipSprites/cruiserAnimation.png, it is a binary file.
+../Assets/spaceshipSprites/ship.png, it is a binary file.
+../Assets/spaceshipSprites/ship2.png, it is a binary file.
+bin/main, it is a binary file.
+bin/main.dSYM/Contents/Info.plist, code is 20, comment is 0, blank is 0.
+bin/main.dSYM/Contents/Resources/DWARF/main, it is a binary file.
+include/Animation.h, code is 23, comment is 0, blank is 3.
+include/Building.h, code is 26, comment is 0, blank is 8.
+include/BuildingsParser.h, code is 125, comment is 6, blank is 13.
+include/BuildTab.h, code is 53, comment is 5, blank is 12.
+include/Constants.h, code is 41, comment is 1, blank is 16.
+include/DysonSphere.h, code is 18, comment is 0, blank is 7.
+include/EconomicsTab.h, code is 21, comment is 0, blank is 7.
+include/Empire.h, code is 54, comment is 0, blank is 12.
+include/GUI_Alert.h, code is 27, comment is 0, blank is 4.
+include/GUI_Button.h, code is 31, comment is 1, blank is 8.
+include/GUI_Label.h, code is 26, comment is 0, blank is 9.
+include/GUI_Panel.h, code is 17, comment is 0, blank is 5.
+include/Helper.h, code is 19, comment is 0, blank is 4.
+include/Menu.h, code is 21, comment is 0, blank is 6.
+include/Moon.h, code is 23, comment is 1, blank is 4.
+include/Parser.h, code is 13, comment is 1, blank is 6.
+include/Planet.h, code is 31, comment is 2, blank is 7.
+include/PlayerEmpire.h, code is 27, comment is 0, blank is 11.
+include/Research.h, code is 41, comment is 0, blank is 8.
+include/ResearchParser.h, code is 186, comment is 13, blank is 10.
+include/ResearchTab.h, code is 53, comment is 2, blank is 9.
+include/Spaceship.h, code is 45, comment is 0, blank is 7.
+include/SpaceshipBuildTab.h, code is 46, comment is 10, blank is 7.
+include/SpaceshipPart.h, code is 34, comment is 0, blank is 5.
+include/SpaceshipPartParser.h, code is 196, comment is 11, blank is 12.
+include/SpaceshipsParser.h, code is 154, comment is 8, blank is 14.
+include/SpaceshipTab.h, code is 23, comment is 0, blank is 4.
+include/Star.h, code is 25, comment is 1, blank is 6.
+include/StarGUI.h, code is 39, comment is 1, blank is 7.
+include/TimeController.h, code is 7, comment is 0, blank is 4.
+Makefile, code is 12, comment is 7, blank is 6.
+src/Animation.cpp, code is 33, comment is 1, blank is 6.
+src/Building.cpp, code is 18, comment is 1, blank is 5.
+src/BuildTab.cpp, code is 45, comment is 3, blank is 10.
+src/DysonSphere.cpp, code is 16, comment is 0, blank is 12.
+src/EconomicsTab.cpp, code is 30, comment is 0, blank is 5.
+src/Empire.cpp, code is 31, comment is 2, blank is 6.
+src/GUI_Alert.cpp, code is 62, comment is 2, blank is 8.
+src/GUI_Button.cpp, code is 50, comment is 2, blank is 10.
+src/GUI_Label.cpp, code is 22, comment is 0, blank is 5.
+src/GUI_Panel.cpp, code is 32, comment is 0, blank is 8.
+src/main.cpp, code is 546, comment is 105, blank is 134.
+src/Menu.cpp, code is 46, comment is 0, blank is 8.
+src/Moon.cpp, code is 32, comment is 4, blank is 6.
+src/Parser.cpp, code is 798, comment is 9, blank is 37.
+src/Planet.cpp, code is 44, comment is 14, blank is 12.
+src/PlayerEmpire.cpp, code is 54, comment is 2, blank is 10.
+src/Research.cpp, code is 24, comment is 0, blank is 2.
+src/ResearchTab.cpp, code is 47, comment is 3, blank is 6.
+src/Spaceship.cpp, code is 132, comment is 0, blank is 25.
+src/SpaceshipBuildTab.cpp, code is 65, comment is 3, blank is 8.
+src/SpaceshipPart.cpp, code is 9, comment is 0, blank is 1.
+src/SpaceshipTab.cpp, code is 53, comment is 0, blank is 7.
+src/Star.cpp, code is 43, comment is 4, blank is 14.
+src/StarGUI.cpp, code is 229, comment is 15, blank is 44.
+src/TimeController.cpp, code is 2, comment is 0, blank is 1.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-11-09 13:16:07
+count workspace : /Users/edoardobiasio/Desktop/sfml/space
+total files : 92
+total code lines : 66571
+total comment lines : 245
+total blank lines : 645
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |           .cpp|           2528|            173|            398|    3.8|
+   |             .h|           1488|             65|            241|    2.2|
+   |               |             12|              7|              6|  0.018|
+   |         .plist|             20|              0|              0|  0.030|
+   |           .txt|          62523|              0|              0|     94|
+   -------------------------------------------------------------------------
+../Assets/buildingSprites/barracks.jpeg, it is a binary file.
+../Assets/buildingSprites/factory.png, it is a binary file.
+../Assets/buildingSprites/house.jpg, it is a binary file.
+../Assets/buildingSprites/power_plant.jpeg, it is a binary file.
+../Assets/economicSprites/bizcoin.png, it is a binary file.
+../Assets/epicBuildingSprites/dyson.png, it is a binary file.
+../Assets/gameData/buildings.txt, code is 6, comment is 0, blank is 0.
+../Assets/gameData/data.txt, code is 62500, comment is 0, blank is 0.
+../Assets/gameData/researches.txt, code is 4, comment is 0, blank is 0.
+../Assets/gameData/spaceshipParts.txt, code is 8, comment is 0, blank is 0.
+../Assets/gameData/spaceships.txt, code is 5, comment is 0, blank is 0.
+../Assets/gui/aspace_demo.otf, it is a binary file.
+../Assets/gui/cursor.png, it is a binary file.
+../Assets/gui/cursor2.png, it is a binary file.
+../Assets/gui/exit.png, it is a binary file.
+../Assets/gui/icon.png, it is a binary file.
+../Assets/gui/loading.png, it is a binary file.
+../Assets/gui/madewithc++.png, it is a binary file.
+../Assets/gui/research.png, it is a binary file.
+../Assets/music/newdawn.wav, it is a binary file.
+../Assets/spaceshipPartsSprites/cannon.png, it is a binary file.
+../Assets/spaceshipPartsSprites/engine.png, it is a binary file.
+../Assets/spaceshipPartsSprites/fuel.png, it is a binary file.
+../Assets/spaceshipPartsSprites/housingShip.jpeg, it is a binary file.
+../Assets/spaceshipPartsSprites/hull.png, it is a binary file.
+../Assets/spaceshipPartsSprites/shield.png, it is a binary file.
+../Assets/spaceshipSprites/cruiser.png, it is a binary file.
+../Assets/spaceshipSprites/cruiserAnimation.png, it is a binary file.
+../Assets/spaceshipSprites/obamium.png, it is a binary file.
+../Assets/spaceshipSprites/ship.png, it is a binary file.
+../Assets/spaceshipSprites/ship2.png, it is a binary file.
+bin/main, it is a binary file.
+bin/main.dSYM/Contents/Info.plist, code is 20, comment is 0, blank is 0.
+bin/main.dSYM/Contents/Resources/DWARF/main, it is a binary file.
+include/Animation.h, code is 23, comment is 0, blank is 3.
+include/Building.h, code is 26, comment is 0, blank is 8.
+include/BuildingsParser.h, code is 125, comment is 6, blank is 13.
+include/BuildTab.h, code is 53, comment is 5, blank is 12.
+include/Constants.h, code is 42, comment is 1, blank is 16.
+include/DysonSphere.h, code is 18, comment is 0, blank is 7.
+include/EconomicsTab.h, code is 21, comment is 0, blank is 7.
+include/Empire.h, code is 54, comment is 1, blank is 12.
+include/GUI_Alert.h, code is 27, comment is 0, blank is 4.
+include/GUI_Button.h, code is 31, comment is 1, blank is 8.
+include/GUI_Label.h, code is 26, comment is 0, blank is 9.
+include/GUI_LoadingBar.h, code is 18, comment is 0, blank is 4.
+include/GUI_Panel.h, code is 17, comment is 0, blank is 5.
+include/Helper.h, code is 19, comment is 0, blank is 4.
+include/Menu.h, code is 21, comment is 0, blank is 6.
+include/Moon.h, code is 23, comment is 1, blank is 4.
+include/Parser.h, code is 13, comment is 1, blank is 6.
+include/Planet.h, code is 31, comment is 2, blank is 7.
+include/PlayerEmpire.h, code is 28, comment is 0, blank is 11.
+include/Research.h, code is 44, comment is 0, blank is 8.
+include/ResearchParser.h, code is 186, comment is 13, blank is 10.
+include/ResearchTab.h, code is 73, comment is 3, blank is 11.
+include/Spaceship.h, code is 45, comment is 0, blank is 7.
+include/SpaceshipBuildTab.h, code is 46, comment is 10, blank is 7.
+include/SpaceshipPart.h, code is 34, comment is 0, blank is 5.
+include/SpaceshipPartParser.h, code is 196, comment is 11, blank is 12.
+include/SpaceshipsParser.h, code is 154, comment is 8, blank is 14.
+include/SpaceshipTab.h, code is 23, comment is 0, blank is 4.
+include/Star.h, code is 25, comment is 1, blank is 6.
+include/StarGUI.h, code is 39, comment is 1, blank is 7.
+include/TimeController.h, code is 7, comment is 0, blank is 4.
+Makefile, code is 12, comment is 7, blank is 6.
+src/Animation.cpp, code is 33, comment is 1, blank is 6.
+src/Building.cpp, code is 18, comment is 1, blank is 5.
+src/BuildTab.cpp, code is 45, comment is 3, blank is 10.
+src/DysonSphere.cpp, code is 16, comment is 0, blank is 12.
+src/EconomicsTab.cpp, code is 30, comment is 0, blank is 5.
+src/Empire.cpp, code is 31, comment is 2, blank is 6.
+src/GUI_Alert.cpp, code is 62, comment is 2, blank is 8.
+src/GUI_Button.cpp, code is 50, comment is 2, blank is 10.
+src/GUI_Label.cpp, code is 22, comment is 0, blank is 5.
+src/GUI_LoadingBar.cpp, code is 27, comment is 0, blank is 3.
+src/GUI_Panel.cpp, code is 32, comment is 0, blank is 8.
+src/main.cpp, code is 563, comment is 107, blank is 136.
+src/Menu.cpp, code is 46, comment is 0, blank is 8.
+src/Moon.cpp, code is 32, comment is 4, blank is 6.
+src/Parser.cpp, code is 798, comment is 9, blank is 37.
+src/Planet.cpp, code is 44, comment is 14, blank is 12.
+src/PlayerEmpire.cpp, code is 62, comment is 2, blank is 11.
+src/Research.cpp, code is 24, comment is 0, blank is 2.
+src/ResearchTab.cpp, code is 60, comment is 4, blank is 8.
+src/Spaceship.cpp, code is 132, comment is 0, blank is 25.
+src/SpaceshipBuildTab.cpp, code is 65, comment is 3, blank is 8.
+src/SpaceshipPart.cpp, code is 9, comment is 0, blank is 1.
+src/SpaceshipTab.cpp, code is 53, comment is 0, blank is 7.
+src/Star.cpp, code is 43, comment is 4, blank is 14.
+src/StarGUI.cpp, code is 229, comment is 15, blank is 44.
+src/TimeController.cpp, code is 2, comment is 0, blank is 1.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-11-15 16:18:34
+count workspace : /Users/edoardobiasio/Desktop/sfml/space
+total files : 104
+total code lines : 66833
+total comment lines : 262
+total blank lines : 694
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |             .h|           1655|             78|            270|    2.5|
+   |           .cpp|           2623|            177|            418|    3.9|
+   |               |             12|              7|              6|  0.018|
+   |           .txt|          62523|              0|              0|     94|
+   |         .plist|             20|              0|              0|  0.030|
+   -------------------------------------------------------------------------
+../Assets/buildingSprites/barracks.jpeg, it is a binary file.
+../Assets/buildingSprites/factory.png, it is a binary file.
+../Assets/buildingSprites/house.jpg, it is a binary file.
+../Assets/buildingSprites/power_plant.jpeg, it is a binary file.
+../Assets/economicSprites/bizcoin.png, it is a binary file.
+../Assets/epicBuildingSprites/dyson.png, it is a binary file.
+../Assets/gameData/buildings.txt, code is 6, comment is 0, blank is 0.
+../Assets/gameData/data.txt, code is 62500, comment is 0, blank is 0.
+../Assets/gameData/researches.txt, code is 4, comment is 0, blank is 0.
+../Assets/gameData/spaceshipParts.txt, code is 8, comment is 0, blank is 0.
+../Assets/gameData/spaceships.txt, code is 5, comment is 0, blank is 0.
+../Assets/gui/aspace_demo.otf, it is a binary file.
+../Assets/gui/cursor.png, it is a binary file.
+../Assets/gui/cursor2.png, it is a binary file.
+../Assets/gui/exit.png, it is a binary file.
+../Assets/gui/icon.png, it is a binary file.
+../Assets/gui/loading.png, it is a binary file.
+../Assets/gui/madewithc++.png, it is a binary file.
+../Assets/gui/research.png, it is a binary file.
+../Assets/human.jpg, it is a binary file.
+../Assets/imperiumFlag.png, it is a binary file.
+../Assets/music/newdawn.wav, it is a binary file.
+../Assets/playerEmpire.png, it is a binary file.
+../Assets/spaceshipPartsSprites/cannon.png, it is a binary file.
+../Assets/spaceshipPartsSprites/engine.png, it is a binary file.
+../Assets/spaceshipPartsSprites/fuel.png, it is a binary file.
+../Assets/spaceshipPartsSprites/housingShip.jpeg, it is a binary file.
+../Assets/spaceshipPartsSprites/hull.png, it is a binary file.
+../Assets/spaceshipPartsSprites/shield.png, it is a binary file.
+../Assets/spaceshipSprites/cruiser.png, it is a binary file.
+../Assets/spaceshipSprites/cruiserAnimation.png, it is a binary file.
+../Assets/spaceshipSprites/obamium.png, it is a binary file.
+../Assets/spaceshipSprites/ship.png, it is a binary file.
+../Assets/spaceshipSprites/ship2.png, it is a binary file.
+bin/main, it is a binary file.
+bin/main.dSYM/Contents/Info.plist, code is 20, comment is 0, blank is 0.
+bin/main.dSYM/Contents/Resources/DWARF/main, it is a binary file.
+include/Animation.h, code is 23, comment is 0, blank is 3.
+include/AStar.h, code is 76, comment is 10, blank is 14.
+include/Battle.h, code is 10, comment is 0, blank is 5.
+include/Building.h, code is 26, comment is 0, blank is 8.
+include/BuildingsParser.h, code is 125, comment is 6, blank is 13.
+include/BuildTab.h, code is 53, comment is 5, blank is 12.
+include/Constants.h, code is 43, comment is 1, blank is 16.
+include/DysonSphere.h, code is 18, comment is 0, blank is 7.
+include/EconomicsTab.h, code is 21, comment is 0, blank is 7.
+include/Empire.h, code is 72, comment is 1, blank is 11.
+include/EmpireTab.h, code is 24, comment is 0, blank is 4.
+include/GridNode.h, code is 21, comment is 1, blank is 4.
+include/GUI_Alert.h, code is 27, comment is 0, blank is 4.
+include/GUI_Button.h, code is 31, comment is 1, blank is 8.
+include/GUI_Label.h, code is 26, comment is 0, blank is 9.
+include/GUI_LoadingBar.h, code is 18, comment is 0, blank is 4.
+include/GUI_Panel.h, code is 17, comment is 0, blank is 5.
+include/Helper.h, code is 23, comment is 0, blank is 5.
+include/Menu.h, code is 21, comment is 0, blank is 6.
+include/Moon.h, code is 23, comment is 1, blank is 4.
+include/Parser.h, code is 13, comment is 1, blank is 6.
+include/Planet.h, code is 31, comment is 2, blank is 7.
+include/PlayerEmpire.h, code is 29, comment is 0, blank is 11.
+include/PlayerEmpireTab.h, code is 11, comment is 0, blank is 4.
+include/Research.h, code is 44, comment is 0, blank is 8.
+include/ResearchParser.h, code is 185, comment is 14, blank is 10.
+include/ResearchTab.h, code is 73, comment is 3, blank is 11.
+include/Spaceship.h, code is 45, comment is 0, blank is 7.
+include/SpaceshipBuildTab.h, code is 46, comment is 10, blank is 7.
+include/SpaceshipPart.h, code is 34, comment is 0, blank is 5.
+include/SpaceshipPartParser.h, code is 196, comment is 11, blank is 12.
+include/SpaceshipsParser.h, code is 156, comment is 9, blank is 12.
+include/SpaceshipTab.h, code is 23, comment is 0, blank is 4.
+include/Star.h, code is 25, comment is 1, blank is 6.
+include/StarGUI.h, code is 39, comment is 1, blank is 7.
+include/TimeController.h, code is 7, comment is 0, blank is 4.
+Makefile, code is 12, comment is 7, blank is 6.
+src/Animation.cpp, code is 33, comment is 1, blank is 6.
+src/Battle.cpp, code is 0, comment is 0, blank is 0.
+src/Building.cpp, code is 18, comment is 1, blank is 5.
+src/BuildTab.cpp, code is 45, comment is 3, blank is 10.
+src/DysonSphere.cpp, code is 16, comment is 0, blank is 12.
+src/EconomicsTab.cpp, code is 30, comment is 0, blank is 5.
+src/Empire.cpp, code is 32, comment is 2, blank is 6.
+src/EmpireTab.cpp, code is 43, comment is 0, blank is 6.
+src/GridNode.cpp, code is 19, comment is 0, blank is 3.
+src/GUI_Alert.cpp, code is 62, comment is 2, blank is 8.
+src/GUI_Button.cpp, code is 50, comment is 2, blank is 10.
+src/GUI_Label.cpp, code is 22, comment is 0, blank is 5.
+src/GUI_LoadingBar.cpp, code is 27, comment is 0, blank is 3.
+src/GUI_Panel.cpp, code is 32, comment is 0, blank is 8.
+src/main.cpp, code is 574, comment is 111, blank is 144.
+src/Menu.cpp, code is 46, comment is 0, blank is 8.
+src/Moon.cpp, code is 32, comment is 4, blank is 6.
+src/Parser.cpp, code is 798, comment is 9, blank is 37.
+src/Planet.cpp, code is 44, comment is 14, blank is 12.
+src/PlayerEmpire.cpp, code is 71, comment is 2, blank is 12.
+src/PlayerEmpireTab.cpp, code is 12, comment is 0, blank is 2.
+src/Research.cpp, code is 24, comment is 0, blank is 2.
+src/ResearchTab.cpp, code is 60, comment is 4, blank is 8.
+src/Spaceship.cpp, code is 132, comment is 0, blank is 25.
+src/SpaceshipBuildTab.cpp, code is 65, comment is 3, blank is 8.
+src/SpaceshipPart.cpp, code is 9, comment is 0, blank is 1.
+src/SpaceshipTab.cpp, code is 53, comment is 0, blank is 7.
+src/Star.cpp, code is 43, comment is 4, blank is 14.
+src/StarGUI.cpp, code is 229, comment is 15, blank is 44.
+src/TimeController.cpp, code is 2, comment is 0, blank is 1.
+===============================================================================
