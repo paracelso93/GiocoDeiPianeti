@@ -1,0 +1,8 @@
+0: type:d cost:10 weight:5 name:cannon sprite:../Assets/spaceshipPartsSprites/cannon.png data:dmg:1;
+1: type:s cost:30 weight:11 name:ionic_shield sprite:../Assets/spaceshipPartsSprites/shield.png data:shd:5;
+2: type:h cost:40 weight:80 name:corvette_hull sprite:../Assets/spaceshipPartsSprites/hull.png data:hul:30;
+3: type:p cost:5 weight:10 name:crew_beds sprite:../Assets/spaceshipPartsSprites/housingShip.jpeg data:hse:7;
+4: type:e cost:25 weight:20 name:ftl_engine sprite:../Assets/spaceshipPartsSprites/engine.png data:eng:15.0;
+5: type:f cost:5 weight:10 name:fuel_tank sprite:../Assets/spaceshipPartsSprites/fuel.png data:fel:20; 
+-- d - damage  s - shield  h - hull  
+-- p - housing  e - engine  f - fuel

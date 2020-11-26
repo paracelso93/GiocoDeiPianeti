@@ -1,0 +1,4 @@
+0: type:s field:e cost:100 diff:1000 name:basic_ship sprite:../Assets/spaceshipSprites/ship.png data:0;
+1: type:b field:p cost:200 diff:300 name:house sprite:../Assets/buildingSprites/house.jpg data:0;
+-- f - buff  s - ship  b - building  p - shipPart
+-- p - physics  e - engineering  b - biology  c - chemistry

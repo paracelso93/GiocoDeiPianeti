@@ -1,0 +1,6 @@
+0: type:h cost:100 name:house sprite:../Assets/buildingSprites/house.jpg;
+1: type:m cost:500 name:barracks sprite:../Assets/buildingSprites/barracks.jpeg;
+2: type:p cost:200 name:factory sprite:../Assets/buildingSprites/factory.png;
+3: type:e cost:150 name:antonio sprite:../Assets/buildingSprites/power_plant.jpeg;
+4: type:h cost:200 name:luigi sprite:../Assets/buildingSprites/house.jpg
+-- h - housing / m - military / p - production / e - energy
