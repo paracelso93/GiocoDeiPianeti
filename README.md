@@ -1,2 +1,2 @@
 # GiocoDeiPianeti
-Gioco dei pianeti realizzato in c++ con sgml
+Gioco dei pianeti realizzato in c++ con sfml
