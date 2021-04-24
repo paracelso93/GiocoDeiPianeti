@@ -1,30 +1,30 @@
 #include "GUI_LoadingBar.h"
 
 void GUI_LoadingBar::setup(int x, int y, int w, int h, sf::Color bgcolor, sf::Color fgcolor, float max, float startvalue) {
-    this->background.setPosition(x, y);
-    this->foreground.setPosition(x, y);
-    this->w = w;
-    this->h = h;
-    this->background.setSize({static_cast<float>(this->w), static_cast<float>(this->h)});
-    this->foreground.setSize({static_cast<float>(this->w) * (startvalue / max), static_cast<float>(this->h)});
-    this->background.setFillColor(bgcolor);
-    this->foreground.setFillColor(fgcolor);
-    this->max = max;
-    this->currentValue = startvalue;
-    this->completed = (this->max / this->currentValue == 1.f);
+    this->mBackground.setPosition(x, y);
+    this->mForeground.setPosition(x, y);
+    this->mWidth = w;
+    this->mHeight = h;
+    this->mBackground.setSize({static_cast<float>(this->mWidth), static_cast<float>(this->mHeight)});
+    this->mForeground.setSize({static_cast<float>(this->mWidth) * (startvalue / max), static_cast<float>(this->mHeight)});
+    this->mBackground.setFillColor(bgcolor);
+    this->mForeground.setFillColor(fgcolor);
+    this->mMax = max;
+    this->mCurrentValue = startvalue;
+    this->mCompleted = (this->mMax / this->mCurrentValue == 1.f);
 }
 
 void GUI_LoadingBar::update(float dt) {
-    if(!completed) {
-        this->currentValue += dt;
-        if(this->currentValue >= this->max) {
-            this->completed = true;
+    if(!mCompleted) {
+        this->mCurrentValue += dt;
+        if(this->mCurrentValue >= this->mMax) {
+            this->mCompleted = true;
         }
-        this->foreground.setSize({static_cast<float>(this->w) * (this->currentValue / this->max), static_cast<float>(this->h)});
+        this->mForeground.setSize({static_cast<float>(this->mWidth) * (this->mCurrentValue / this->mMax), static_cast<float>(this->mHeight)});
     }
 }
 
-void GUI_LoadingBar::render(sf::RenderWindow *window) {
-    window->draw(this->background);
-    window->draw(this->foreground);
+void GUI_LoadingBar::render(sf::RenderWindow& window) {
+    window.draw(this->mBackground);
+    window.draw(this->mForeground);
 }

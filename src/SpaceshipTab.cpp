@@ -1,66 +1,66 @@
 #include "SpaceshipTab.h"
 
-GUI_Panel SpaceshipTab::panel = GUI_Panel();
-GUI_Label SpaceshipTab::title = GUI_Label();
-std::vector<Spaceship *> SpaceshipTab::ships = std::vector<Spaceship *>();
-std::vector<GUI_Label *> SpaceshipTab::shipLabels = std::vector<GUI_Label *>();
-std::vector<GUI_Button *> SpaceshipTab::shipButtons = std::vector<GUI_Button *>();
-sf::Font SpaceshipTab::font;
+GUI_Panel SpaceshipTab::mPanel = GUI_Panel();
+GUI_Label SpaceshipTab::mTitle = GUI_Label();
+std::vector<Spaceship *> SpaceshipTab::mShips = std::vector<Spaceship *>();
+std::vector<GUI_Label *> SpaceshipTab::mShipLabels = std::vector<GUI_Label *>();
+std::vector<GUI_Button *> SpaceshipTab::mShipButtons = std::vector<GUI_Button *>();
+sf::Font SpaceshipTab::mFont;
 
 void SpaceshipTab::setup(sf::Font f, void (*close)()) {
-    font = f;
-    panel.setup({5, constants::UPPERGUIHEIGHT}, {400, 600}, sf::Color::Blue, sf::Color::Yellow, font, close);
-    title.setup("SPACESHIPS", sf::Color::White, font, 50, {15, constants::UPPERGUIHEIGHT + 15});
+    mFont = f;
+    mPanel.setup({5, constants::UPPERGUIHEIGHT}, {400, 600}, sf::Color::Blue, sf::Color::Yellow, mFont, close);
+    mTitle.setup("SPACESHIPS", sf::Color::White, mFont, 50, {15, constants::UPPERGUIHEIGHT + 15});
 }
 
-void SpaceshipTab::render(sf::RenderWindow *window) {
-    panel.render(window);
-    title.render(window);
-    for(auto e : shipLabels) {
+void SpaceshipTab::render(sf::RenderWindow& window) {
+    mPanel.render(window);
+    mTitle.render(window);
+    for(auto e : mShipLabels) {
         e->render(window);
     }
     int i = 0;
-    for(auto e : ships) {
-        sf::Sprite s = e->spaceSprite;
+    for(auto e : mShips) {
+        sf::Sprite s = e->mSpaceSprite;
         s.setPosition((i % 3) * 100 + 30, i / 3 * 150 + 200);
-        window->draw(s);
+        window.draw(s);
         i++;
     }
 }
 
 void SpaceshipTab::empty() {
-    ships.clear();
+    mShips.clear();
 
-    for(auto l : shipLabels) {
+    for(auto l : mShipLabels) {
         delete l;
     }
-    shipLabels.clear();
+    mShipLabels.clear();
 
-    for(auto b : shipButtons) {
+    for(auto b : mShipButtons) {
         delete b;
     }
-    shipButtons.clear();
+    mShipButtons.clear();
 }
 void SpaceshipTab::addSpaceship(Spaceship *s) {
-    ships.push_back(s);
+    mShips.push_back(s);
     GUI_Label *l = new GUI_Label();
-    l->setup(s->getName(), sf::Color::White, font, 12, {static_cast<float>((((int)(ships.size()) - 1) % 3) * 100 + 5), static_cast<float>(((int)ships.size() - 1) / 3) * 150.f + 260.f});
-    shipLabels.push_back(l);
+    l->setup(s->getName(), sf::Color::White, mFont, 12, {static_cast<float>((((int)(mShips.size()) - 1) % 3) * 100 + 5), static_cast<float>(((int)mShips.size() - 1) / 3) * 150.f + 260.f});
+    mShipLabels.push_back(l);
     GUI_Button *b = new GUI_Button();
     sf::RectangleShape t;
     t.setSize({70, 70});
-    t.setPosition(((((int)ships.size()) - 1) % 3) * 100 + 30, (((int)(ships.size()) - 1) / 3) * 150 + 200);
-    b->setup(font, t, sf::Color::Transparent, sf::Color::Transparent, " ", 1);
-    shipButtons.push_back(b);
+    t.setPosition(((((int)mShips.size()) - 1) % 3) * 100 + 30, (((int)(mShips.size()) - 1) / 3) * 150 + 200);
+    b->setup(mFont, t, sf::Color::Transparent, sf::Color::Transparent, " ", 1);
+    mShipButtons.push_back(b);
 }
 
 void SpaceshipTab::getInput(sf::Vector2i mousePos) {
     int i = 0;
-    for(auto e : shipButtons) {
+    for(auto e : mShipButtons) {
         if(e->checkForClick(mousePos)) {
-            std::cout << "Selected: " << ships[i]->getName() << std::endl;
+            std::cout << "Selected: " << mShips[i]->getName() << std::endl;
         }
         i++;
     }
-    panel.getExit(mousePos);
+    mPanel.getExit(mousePos);
 }

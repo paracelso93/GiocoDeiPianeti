@@ -9,19 +9,19 @@
 class Moon
 {
     private:
-        int order;
-        double T;
+        int mOrder;
+        double mT;
     public:
         void createMoon(int ord, double K, float previousDistance, constants::PlanetSize pSize);
         Moon();
         virtual ~Moon();
-        float distance;
-        float angle;
-        float angularVelocity;
-        float mass;
-        float radius;
-        int x, y;
-        sf::Color color;
+        float mDistance;
+        float mAngle;
+        float mAngularVelocity;
+        float mMass;
+        float mRadius;
+        int mX, mY;
+        sf::Color mColor;
 };
 
 #endif // MOON_H

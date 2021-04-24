@@ -6,16 +6,16 @@
 
 class GUI_Panel {
     private:  
-        sf::RectangleShape shape;
-        static sf::Texture exitTexture;
-        sf::Sprite exitSprite;
-        static bool texLoaded;
-        GUI_Button closeButton;
-        sf::Font font;
+        sf::RectangleShape mShape;
+        static sf::Texture mExitTexture;
+        sf::Sprite mExitSprite;
+        static bool mTexLoaded;
+        GUI_Button mCloseButton;
+        sf::Font mFont;
 
     public:   
         void setup(sf::Vector2f position, sf::Vector2f size, sf::Color bgcolor, sf::Color edgeColor, sf::Font font, void (*close)());
-        void render(sf::RenderWindow *window);
+        void render(sf::RenderWindow& window);
         void getExit(sf::Vector2i mousePos);
 };
 

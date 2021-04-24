@@ -12,25 +12,25 @@ Planet::~Planet()
 }
 
 void Planet::createPlanet(int ord, double K, float previousDistance){
-    order = ord;
+    mOrder = ord;
 
-    this->occupierID = 0;
+    this->mOccupierID = 0;
 
     bool choice = rand()%2 == 0;
     if(choice) {
-        mass = (float)(rand() % 50) / 50 + 0.1f;
+        mMass = (float)(rand() % 50) / 50 + 0.1f;
     } else {
-        mass = (float)(rand() % 500) / 10.f;
+        mMass = (float)(rand() % 500) / 10.f;
     }
-    if(mass < 1) {
-        size = constants::PlanetSize::Psmall;
-        radius = pow(mass, 0.3);
-    } else if(mass <= 200) {
-        size = constants::PlanetSize::Pnormal;
-        radius = pow(mass, 0.5);
+    if(mMass < 1) {
+        mSize = constants::PlanetSize::Psmall;
+        mRadius = pow(mMass, 0.3);
+    } else if(mMass <= 200) {
+        mSize = constants::PlanetSize::Pnormal;
+        mRadius = pow(mMass, 0.5);
     } else {
-        size = constants::PlanetSize::Plarge;
-        radius = pow(mass, -0.0886) * 22.6;
+        mSize = constants::PlanetSize::Plarge;
+        mRadius = pow(mMass, -0.0886) * 22.6;
     }
 
     //mass = mass * EARTHMASS;
@@ -38,20 +38,20 @@ void Planet::createPlanet(int ord, double K, float previousDistance){
 
     //std::cout << "mass: " << mass << std::endl;
 
-    distance = previousDistance + 50 + (radius * 10);
+    mDistance = previousDistance + 50 + (mRadius * 10);
     //std::cout << "radius: " << radius << std::endl;
 
-    color = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
-    numn = rand() % 8;
-    float realDistance = (distance / 150) * constants::EARTHDISTANCE;
-    T = sqrt(pow(realDistance, 3) / K);
-    angularVelocity = constants::FULLANGLE / T;
+    mColor = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
+    mNumn = rand() % 8;
+    float realDistance = (mDistance / 150) * constants::EARTHDISTANCE;
+    mT = sqrt(pow(realDistance, 3) / K);
+    mAngularVelocity = constants::FULLANGLE / mT;
     //std::cout << "periodo: " << T << std::endl;
-    angle = 0;
-    this->K = (constants::G * (mass * constants::EARTHMASS)) / (4 * constants::PI * constants::PI);
-    for (int i = 0; i < numn; i++)
+    mAngle = 0;
+    this->mK = (constants::G * (mMass * constants::EARTHMASS)) / (4 * constants::PI * constants::PI);
+    for (int i = 0; i < mNumn; i++)
     {
-        moons[i].createMoon(i, this->K, i == 0 ? radius : moons[i - 1].distance, size);
+        mMoons[i].createMoon(i, this->mK, i == 0 ? mRadius : mMoons[i - 1].mDistance, mSize);
         /*while(true) {
             if(moons[i].radius >= radius) {
                 moons[i].radius /= 10;
@@ -62,9 +62,9 @@ void Planet::createPlanet(int ord, double K, float previousDistance){
     }
 
     int len = rand() % 5 + 3;
-    name = "";
+    mName = "";
 
     for(int p = 0; p < len; p ++) {
-        name += (char)(rand()%21 + 65);
+        mName += (char)(rand()%21 + 65);
     }
 }

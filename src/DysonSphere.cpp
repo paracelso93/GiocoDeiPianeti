@@ -1,28 +1,28 @@
 #include "DysonSphere.h"
 
 
-sf::Sprite DysonSphere::sprite = sf::Sprite();
-sf::Texture DysonSphere::sphereTexture = sf::Texture();
+sf::Sprite DysonSphere::mSprite = sf::Sprite();
+sf::Texture DysonSphere::mSphereTexture = sf::Texture();
 
 
 
 void DysonSphere::setup(Star *star, int energy) {
-    this->star = star;
-    this->energyProduction = energy;
+    this->mStar = star;
+    this->mEnergyProduction = energy;
     
-    this->sprite.setPosition(300 - (125.f / 2 - this->star->radius * 8), constants::STARGUIY + constants::UPPERGUIHEIGHT - (125.f / 2 - this->star->radius * 8));
-    star->hasDysonSphere = true;
+    this->mSprite.setPosition(300 - (125.f / 2 - this->mStar->mRadius * 8), constants::STARGUIY + constants::UPPERGUIHEIGHT - (125.f / 2 - this->mStar->mRadius * 8));
+    star->mHasDysonSphere = true;
 }
 
 void DysonSphere::setTexture(const std::string& filePath) {
-    this->sphereTexture.loadFromFile(filePath);
-    this->sprite.setTexture(this->sphereTexture);
+    this->mSphereTexture.loadFromFile(filePath);
+    this->mSprite.setTexture(this->mSphereTexture);
 
 
     
 }
 
-void DysonSphere::render(sf::RenderWindow *window) {
-    window->draw(sprite);
+void DysonSphere::render(sf::RenderWindow& window) {
+    window.draw(mSprite);
 }
 

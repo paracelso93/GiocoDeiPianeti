@@ -8,12 +8,12 @@ class BattleMap {
     public:  
         GridNode *nodes;
         void setup(int width, int height);
-        void render(sf::RenderWindow *window);
+        void render(sf::RenderWindow& window);
         void clear() { delete nodes; delete this; }
-        int width;
-        int height;
-        int nWidth;
-        int nHeight;
+        int mWidth;
+        int mHeight;
+        int mNWidth;
+        int mNHeight;
 };
 
 

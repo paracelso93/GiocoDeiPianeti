@@ -3,7 +3,7 @@
 
 class TimeController {
     public:  
-        static float timeDilation;
+        static float mTimeDilation;
 
 };
 

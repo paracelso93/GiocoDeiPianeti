@@ -1,54 +1,55 @@
 #include "Spaceship.h"
 
 void Spaceship::setup(Star *startingStar, Planet *startingPlanet, int maxFuel, std::string name, float x, float y, std::string texturePath, SpaceShipTypes type, int offset, float speed, int cost) {
-    this->currentStar = startingStar;
-    this->currentPlanet = startingPlanet;
-    this->maxFuel = maxFuel;
-    this->fuel = maxFuel;
-    this->name = name;
-    this->type = type;
-    this->offset = offset;
-    this->x = x;
-    this->y = y;
-    this->vx = 0;
-    this->vy = 0;
-    this->texture.loadFromFile(texturePath);
-    this->travelling = false;
-    this->cost = cost;
+    this->mCurrentStar = startingStar;
+    this->mCurrentPlanet = startingPlanet;
+    this->mMaxFuel = maxFuel;
+    this->mFuel = maxFuel;
+    this->mName = name;
+    this->mType = type;
+    this->mOffset = offset;
+    this->mX = x;
+    this->mY = y;
+    this->mVx = 0;
+    this->mVy = 0;
+    this->mTexture.loadFromFile(texturePath);
+    this->mTravelling = false;
+    this->mCost = cost;
 
-    this->worldx = this->currentStar->x;
-    this->worldy = this->currentStar->y + constants::UPPERGUIHEIGHT;
+    this->mWorldX = this->mCurrentStar->mX;
+    this->mWorldY = this->mCurrentStar->mY + constants::UPPERGUIHEIGHT;
     
-    this->shipSprite.setTexture(this->texture);
-    this->shipSprite.setScale(0.1f, 0.1f);
-    this->shipSprite.setPosition(currentPlanet->x - currentPlanet->radius * 3 + offset, currentPlanet->y - currentPlanet->radius * 3);
+    this->mShipSprite.setTexture(this->mTexture);
+    this->mShipSprite.setScale(0.1f, 0.1f);
+    this->mShipSprite.setPosition(mCurrentPlanet->mX - mCurrentPlanet->mRadius * 3 + offset, mCurrentPlanet->mY - mCurrentPlanet->mRadius * 3);
 
-    this->spaceSprite.setTexture(this->texture);
-    this->spaceSprite.setScale(0.1f, 0.1f);
-    this->spaceSprite.setPosition(this->worldx + offset, this->worldy);
+    this->mSpaceSprite.setTexture(this->mTexture);
+    this->mSpaceSprite.setScale(0.1f, 0.1f);
+    this->mSpaceSprite.setPosition(this->mWorldX + mOffset, this->mWorldY);
 
-    this->battleSprite.setTexture(this->texture);
-    this->battleSprite.setScale(0.3f, 0.3f);
-    this->speed = speed;
+    this->mBattleSprite.setTexture(this->mTexture);
+    this->mBattleSprite.setScale(0.3f, 0.3f);
+    this->mSpeed = speed;
     std::string borderPath = texturePath;
     for(int i = 0; i < 4; i++) 
         borderPath.pop_back();
 
     borderPath += "_border.png";
 
-    this->borderTexture.loadFromFile(borderPath);
-    this->borderShipSprite.setTexture(borderTexture);
-    this->borderShipSprite.setScale(0.3f, 0.3f);
+    this->mBorderTexture.loadFromFile(borderPath);
+    this->mBorderShipSprite.setTexture(mBorderTexture);
+    this->mBorderShipSprite.setScale(0.3f, 0.3f);
 }
 
 void Spaceship::create(int maxFuel, std::string name, std::string texturePath, SpaceShipTypes type, float speed, int cost) {
-    this->maxFuel = maxFuel;
-    this->name = name;
-    this->texture.loadFromFile(texturePath);
-    this->shipSprite.setTexture(this->texture);
-    this->spaceSprite.setTexture(this->texture);
-    this->battleSprite.setTexture(this->texture);
-    this->battleSprite.setScale(0.3f, 0.3f);
+    this->mMaxFuel = maxFuel;
+    this->mFuel = mMaxFuel;
+    this->mName = name;
+    this->mTexture.loadFromFile(texturePath);
+    this->mShipSprite.setTexture(this->mTexture);
+    this->mSpaceSprite.setTexture(this->mTexture);
+    this->mBattleSprite.setTexture(this->mTexture);
+    this->mBattleSprite.setScale(0.3f, 0.3f);
 
     std::string borderPath = texturePath;
     for(int i = 0; i < 4; i++) 
@@ -56,138 +57,160 @@ void Spaceship::create(int maxFuel, std::string name, std::string texturePath, S
 
     borderPath += "_border.png";
 
-    this->borderTexture.loadFromFile(borderPath);
-    this->borderShipSprite.setTexture(borderTexture);
-    this->borderShipSprite.setScale(0.3f, 0.3f);
-    this->type = type;
-    this->speed = speed;
-    this->cost = cost;
+    this->mBorderTexture.loadFromFile(borderPath);
+    this->mBorderShipSprite.setTexture(mBorderTexture);
+    this->mBorderShipSprite.setScale(0.3f, 0.3f);
+    this->mType = type;
+    this->mSpeed = speed;
+    this->mCost = cost;
 }
 
 void Spaceship::position(Star *star, Planet *planet, float x, float y, int offset) {
-    this->currentStar = star;
-    this->currentPlanet = planet;
-    this->x = x;
-    this->y = y;
-    this->offset = offset;
-    this->vx = 0;
-    this->vy = 0;
-    this->travelling = false;
+    this->mCurrentStar = star;
+    this->mCurrentPlanet = planet;
+    this->mX = x;
+    this->mY = y;
+    this->mOffset = offset;
+    this->mVx = 0;
+    this->mVy = 0;
+    this->mTravelling = false;
 
-    this->worldx = this->currentStar->x;
-    this->worldy = this->currentStar->y + constants::UPPERGUIHEIGHT;
+    this->mWorldX = this->mCurrentStar->mX;
+    this->mWorldY = this->mCurrentStar->mY + constants::UPPERGUIHEIGHT;
     
-    this->shipSprite.setScale(0.1f, 0.1f);
-    this->shipSprite.setPosition(this->currentPlanet->x - this->currentPlanet->radius * 3 + this->offset, this->currentPlanet->y - this->currentPlanet->radius * 3);
+    this->mShipSprite.setScale(0.1f, 0.1f);
+    this->mShipSprite.setPosition(this->mCurrentPlanet->mX - this->mCurrentPlanet->mRadius * 3 + this->mOffset, this->mCurrentPlanet->mY - this->mCurrentPlanet->mRadius * 3);
 
-    this->spaceSprite.setScale(0.1f, 0.1f);
-    this->spaceSprite.setPosition(this->worldx + this->offset, this->worldy);
+    this->mSpaceSprite.setScale(0.1f, 0.1f);
+    this->mSpaceSprite.setPosition(this->mWorldX + this->mOffset, this->mWorldY);
 }
 
 
-void Spaceship::render(sf::RenderWindow *window, Star *selectedStar, bool isGUIVisible, sf::View view) {
+void Spaceship::render(sf::RenderWindow& window, Star *selectedStar, bool isGUIVisible, sf::View view) {
     if(isGUIVisible) {
-        if(currentStar->name == selectedStar->name) {
-            for(int i = 0; i < currentStar->nump; i++) {
-                if(currentStar->planets[i].name == this->currentPlanet->name) {
-                    this->x = selectedStar->planets[i].x;
-                    this->y = selectedStar->planets[i].y;
+        if(mCurrentStar->mName == selectedStar->mName) {
+            for(int i = 0; i < mCurrentStar->mNumP; i++) {
+                if(mCurrentStar->mPlanets[i].mName == this->mCurrentPlanet->mName) {
+                    this->mX = selectedStar->mPlanets[i].mX;
+                    this->mY = selectedStar->mPlanets[i].mY;
                 }
             }
-            window->draw(this->shipSprite);
+            window.draw(this->mShipSprite);
         }
-        if(window->mapCoordsToPixel({static_cast<float>(this->worldx), static_cast<float>(this->worldy)}, view).y < 690) {
-            window->setView(view);
-            window->draw(spaceSprite);
-            window->setView(window->getDefaultView());
+        if(window.mapCoordsToPixel({static_cast<float>(this->mWorldX), static_cast<float>(this->mWorldY)}, view).y < 690) {
+            window.setView(view);
+            window.draw(mSpaceSprite);
+            window.setView(window.getDefaultView());
         }
     } else {
     
-        window->setView(view);
-        window->draw(spaceSprite);
-        window->setView(window->getDefaultView());
+        window.setView(view);
+        window.draw(mSpaceSprite);
+        window.setView(window.getDefaultView());
     }
 }
 
 void Spaceship::update() {
 
-    if(this->travelling) {
-        if(this->target.x > this->worldx) {
-            vx = this->speed * (TimeController::timeDilation / 500.f);
-        } else if(this->target.x < this->worldx) {
-            vx = -this->speed * (TimeController::timeDilation / 500.f);
+    if(this->mTravelling) {
+        if(this->mTarget.x > this->mWorldX) {
+            mVx = this->mSpeed * (TimeController::mTimeDilation / 500.f);
+        } else if(this->mTarget.x < this->mWorldX) {
+            mVx = -this->mSpeed * (TimeController::mTimeDilation / 500.f);
         }
 
-        if(this->target.y > this->worldy) {
-            vy = this->speed * (TimeController::timeDilation / 500.f);
-        } else if(this->target.y < this->worldy) {
-            vy = -this->speed * (TimeController::timeDilation / 500.f);
+        if(this->mTarget.y > this->mWorldY) {
+            mVy = this->mSpeed * (TimeController::mTimeDilation / 500.f);
+        } else if(this->mTarget.y < this->mWorldY) {
+            mVy = -this->mSpeed * (TimeController::mTimeDilation / 500.f);
         }
 
-        if(std::abs(this->target.x - this->worldx) > std::abs(this->target.y - this->worldy)) {
-            float time = (this->target.x - this->worldx) / this->vx;
-            this->vy = (this->target.y - this->worldy) / time;
+        if(std::abs(this->mTarget.x - this->mWorldX) > std::abs(this->mTarget.y - this->mWorldY)) {
+            float time = (this->mTarget.x - this->mWorldX) / this->mVx;
+            this->mVy = (this->mTarget.y - this->mWorldY) / time;
         } else {
-            float time = (this->target.y - this->worldy) / this->vy;
-            this->vx = (this->target.x - this->worldx) / time;
+            float time = (this->mTarget.y - this->mWorldY) / this->mVy;
+            this->mVx = (this->mTarget.x - this->mWorldX) / time;
         }
 
-        if(this->target.x == worldx && this->target.y == worldy) {
-            this->travelling = false;
+        if(this->mTarget.x == mWorldX && this->mTarget.y == mWorldY) {
+            this->mTravelling = false;
             
-            this->vx = 0;
-            this->vy = 0;
+            this->mVx = 0;
+            this->mVy = 0;
         }
-        this->worldx += this->vx;
-        this->worldy += this->vy;
-        this->spaceSprite.setPosition(this->worldx, this->worldy);
+        this->mWorldX += this->mVx;
+        this->mWorldY += this->mVy;
+        this->mSpaceSprite.setPosition(this->mWorldX, this->mWorldY);
     } else {
-        this->shipSprite.setPosition(this->x - currentPlanet->radius * 3 + offset, this->y - currentPlanet->radius * 3);
+        this->mShipSprite.setPosition(this->mX - mCurrentPlanet->mRadius * 3 + mOffset, this->mY - mCurrentPlanet->mRadius * 3);
     }
 }
 
 void Spaceship::setTarget(sf::Vector2f position) {
-    this->target.x = position.x;
-    this->target.y = position.y;
+    this->mTarget.x = position.x;
+    this->mTarget.y = position.y;
 
-    this->travelling = true;
+    this->mTravelling = true;
 
     
-    if(this->target.x > this->worldx) {
-        vx = speed * (TimeController::timeDilation / 500.f);
-    } else if(this->target.x < this->worldx) {
-        vx = -speed * (TimeController::timeDilation / 500.f);
+    if(this->mTarget.x > this->mWorldX) {
+        mVx = mSpeed * (TimeController::mTimeDilation / 500.f);
+    } else if(this->mTarget.x < this->mWorldX) {
+        mVx = -mSpeed * (TimeController::mTimeDilation / 500.f);
     }
 
-    if(this->target.y > this->worldy) {
-        vy = speed * (TimeController::timeDilation / 500.f);
-    } else if(this->target.y < this->worldy) {
-        vy = -speed * (TimeController::timeDilation / 500.f);
+    if(this->mTarget.y > this->mWorldY) {
+        mVy = mSpeed * (TimeController::mTimeDilation / 500.f);
+    } else if(this->mTarget.y < this->mWorldY) {
+        mVy = -mSpeed * (TimeController::mTimeDilation / 500.f);
     }
 
-    if(std::abs(this->target.x - this->worldx) > std::abs(this->target.y - this->worldy)) {
-        float time = (this->target.x - this->worldx) / this->vx;
-        this->vy = (this->target.y - this->worldy) / time * (TimeController::timeDilation / 500.f);
+    if(std::abs(this->mTarget.x - this->mWorldX) > std::abs(this->mTarget.y - this->mWorldY)) {
+        float time = (this->mTarget.x - this->mWorldX) / this->mVx;
+        this->mVy = (this->mTarget.y - this->mWorldY) / time * (TimeController::mTimeDilation / 500.f);
     } else {
-        float time = (this->target.y - this->worldy) / this->vy;
-        this->vx = (this->target.x - this->worldx) / time * (TimeController::timeDilation / 500.f);
+        float time = (this->mTarget.y - this->mWorldY) / this->mVy;
+        this->mVx = (this->mTarget.x - this->mWorldX) / time * (TimeController::mTimeDilation / 500.f);
     }
-    if(this->target.x == worldx && this->target.y == worldy) {
-        this->travelling = false;
-        this->vx = 0;
-        this->vy = 0;
+    if(this->mTarget.x == mWorldX && this->mTarget.y == mWorldY) {
+        this->mTravelling = false;
+        this->mVx = 0;
+        this->mVy = 0;
     }
 }
 
 void Spaceship::setupBattle(float x, float y) {
-    this->battlePosition.x = x;
-    this->battlePosition.y = y;
-    this->battleSprite.setPosition(this->battlePosition);
+    this->mBattlePosition.x = x;
+    this->mBattlePosition.y = y;
+    this->mBattleSprite.setPosition(this->mBattlePosition);
 }
 
-void Spaceship::renderBattle(sf::RenderWindow *window, bool border) {
+void Spaceship::renderBattle(sf::RenderWindow &window, bool border) {
     if(border) 
-        window->draw(this->borderShipSprite);
+        window.draw(this->mBorderShipSprite);
     else
-        window->draw(this->battleSprite);
+        window.draw(this->mBattleSprite);
+}
+
+void Spaceship::addPart(SpaceshipPart *part, bool substitute) {
+    mParts.parts.push_back(part);
+    this->mMaxFuel += part->getFuel();
+    this->mFuel += part->getFuel();
+    this->mSpeed += part->getSpeed();
+    this->mCost += part->getCost();
+    this->mMaxHousing += part->getHousing();
+    this->mCrew += part->getHousing();
+    this->mHull += part->getHull();
+    this->mShields += part->getShields();
+
+    // spaghetti
+    switch (part->getType()) {
+        case SpaceshipPartType::Damage: mParts.weapons.push_back(mParts.parts.size() - 1); break;
+        case SpaceshipPartType::Shield: mParts.shields.push_back(mParts.parts.size() - 1); break;
+        case SpaceshipPartType::Hull: if (substitute) mParts.hull = mParts.parts.size() - 1; else std::cout << "You cant't substitute part!" << part->getName() << std::endl; break;
+        case SpaceshipPartType::Housing: mParts.crew.push_back(mParts.parts.size() - 1); break;
+        case SpaceshipPartType::Engine: if (substitute) mParts.engine = mParts.parts.size() - 1; else std::cout << "You cant't substitute part!" << part->getName() << std::endl; break;
+        case SpaceshipPartType::Fuel: mParts.fuel.push_back(mParts.parts.size() - 1); break;
+    }
 }

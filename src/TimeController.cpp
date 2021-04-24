@@ -1,3 +1,3 @@
 #include "TimeController.h"
 
-float TimeController::timeDilation = 500.f;
+float TimeController::mTimeDilation = 500.f;

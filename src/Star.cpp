@@ -13,49 +13,49 @@ Star::~Star()
 
 void Star::createStar(int x, int y)
     {
-        this->x = x;
-        this->y = y;
-        exists = rand() % 20 < 2;
+        this->mX = x;
+        this->mY = y;
+        mExists = rand() % 20 < 2;
 
         
-        if (!exists)
+        if (!mExists)
             return;
-        radius = ((float)(rand() % 10000) / 1000 + 0.001);
-        mass = sqrt(sqrt(pow(radius, 5)));
+        mRadius = ((float)(rand() % 10000) / 1000 + 0.001);
+        mMass = sqrt(sqrt(pow(mRadius, 5)));
 
-        hasDysonSphere = false;
+        mHasDysonSphere = false;
 
         //mass = mass * SOLARMASS;
         //radius = radius * SOLARRADIUS;
-        this->x = this->x + (constants::GRIDSIDELENGTH / 2 - (this->radius * 2));
-        this->y = this->y + (constants::GRIDSIDELENGTH / 2 - (this->radius * 2));
-        color = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
+        this->mX = this->mX + (constants::GRIDSIDELENGTH / 2 - (this->mRadius * 2));
+        this->mY = this->mY + (constants::GRIDSIDELENGTH / 2 - (this->mRadius * 2));
+        mColor = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
 
-        K = (constants::G * mass * constants::SOLARMASS) / (4 * constants::PI * constants::PI);
+        mK = (constants::G * mMass * constants::SOLARMASS) / (4 * constants::PI * constants::PI);
 
 
         int len = rand() % 5 + 5;
-        name = "";
+        mName = "";
 
         for(int p = 0; p < len; p ++) {
-            name += (char)(rand()%21 + 65);
+            mName += (char)(rand()%21 + 65);
         }
 
-        shape.setPosition(this->x, this->y);
-        shape.setFillColor(this->color);
-        shape.setRadius(this->radius * 2);
-        guiShape.setPosition(300, constants::STARGUIY + constants::UPPERGUIHEIGHT);
-        guiShape.setFillColor(this->color);
-        guiShape.setRadius(this->radius * 8);
-        nump = rand() % 9;
-        for (int i = 0; i < nump; i++)
+        mShape.setPosition(this->mX, this->mY);
+        mShape.setFillColor(this->mColor);
+        mShape.setRadius(this->mRadius * 2);
+        mGuiShape.setPosition(300, constants::STARGUIY + constants::UPPERGUIHEIGHT);
+        mGuiShape.setFillColor(this->mColor);
+        mGuiShape.setRadius(this->mRadius * 8);
+        mNumP = rand() % 9;
+        for (int i = 0; i < mNumP; i++)
         {
-            planets[i].createPlanet(i, K, i == 0 ? 50 : planets[i - 1].distance);
-            orbits[i].setFillColor(sf::Color::Transparent);
-            orbits[i].setOutlineColor(sf::Color(255, 255, 255, 100));
-            orbits[i].setOutlineThickness (4);
+            mPlanets[i].createPlanet(i, mK, i == 0 ? 50 : mPlanets[i - 1].mDistance);
+            mOrbits[i].setFillColor(sf::Color::Transparent);
+            mOrbits[i].setOutlineColor(sf::Color(255, 255, 255, 100));
+            mOrbits[i].setOutlineThickness (4);
 
-            orbits[i].setRadius(planets[i].distance);
-            orbits[i].setPosition(300 - planets[i].distance + this->radius * 8, 885 - planets[i].distance + this->radius * 8);
+            mOrbits[i].setRadius(mPlanets[i].mDistance);
+            mOrbits[i].setPosition(300 - mPlanets[i].mDistance + this->mRadius * 8, 885 - mPlanets[i].mDistance + this->mRadius * 8);
         }
     }

@@ -8,16 +8,16 @@
 
 class Battle {
     private:  
-        BattleMap *map;
-        int side1ID, side2ID;
-        std::vector<Spaceship *> side1Spaceships, side2Spaceships;
+        BattleMap *mMap;
+        int mSide1ID, mSide2ID;
+        std::vector<Spaceship *> mSide1Spaceships, mSide2Spaceships;
         //sf::Shader outline;
-        int selectedShipIndex;
-        bool selected;
+        int mSelectedShipIndex;
+        bool mSelected;
     public:  
         void setup(int ID1, int ID2);
         void setSpaceship(int ID, Spaceship *spaceship);
-        void render(sf::RenderWindow *window);
+        void render(sf::RenderWindow& window);
         void setMap(BattleMap *map);
         void getInput(sf::Vector2i mousePos);
         void generateBattlePositions(int ID1, int ID2);

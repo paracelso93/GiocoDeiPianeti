@@ -12,16 +12,16 @@ class SpaceshipTab {
         static void setup(sf::Font f, void (*close)());
         static void empty();
         static void addSpaceship(Spaceship *s);
-        static void render(sf::RenderWindow *window);
+        static void render(sf::RenderWindow& window);
         static void getInput(sf::Vector2i mousePos);
 
     private: 
-        static GUI_Panel panel;
-        static GUI_Label title;
-        static std::vector<Spaceship *> ships;
-        static std::vector<GUI_Label *> shipLabels;
-        static std::vector<GUI_Button *> shipButtons;
-        static sf::Font font;
+        static GUI_Panel mPanel;
+        static GUI_Label mTitle;
+        static std::vector<Spaceship *> mShips;
+        static std::vector<GUI_Label *> mShipLabels;
+        static std::vector<GUI_Button *> mShipButtons;
+        static sf::Font mFont;
 };
 
 #endif

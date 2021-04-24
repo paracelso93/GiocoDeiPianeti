@@ -147,7 +147,7 @@ class SpaceshipsParser {
             return b; 
         }
     public:  
-        static std::vector<Spaceship *> spaceships;
+        static std::vector<Spaceship *> mSpaceships;
         static void setup() {
             parse();
         }
@@ -164,7 +164,7 @@ class SpaceshipsParser {
                 Spaceship *b = parseSpaceship(line);
                 if(b != nullptr) {
                     //printSpaceship(b);
-                    spaceships.push_back(b);
+                    mSpaceships.push_back(b);
                 }
             }
             file.close();

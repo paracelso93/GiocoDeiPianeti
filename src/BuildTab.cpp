@@ -1,55 +1,55 @@
 #include "BuildTab.h"
 
-Planet *BuildTab::currentPlanet = nullptr;
-Building *BuildTab::currentBuilding = nullptr;
-PlayerEmpire *BuildTab::empire = nullptr;
-std::vector<Building* > BuildTab::buildings = std::vector<Building* >();
-std::vector<GUI_Label* > BuildTab::buildingLabels = std::vector<GUI_Label* >();
-std::vector<GUI_Button* > BuildTab::buildingButtons = std::vector<GUI_Button* >(); 
-GUI_Panel BuildTab::panel = GUI_Panel();
-GUI_Label BuildTab::title = GUI_Label();
-sf::Font BuildTab::font = sf::Font();
+Planet *BuildTab::mCurrentPlanet = nullptr;
+Building *BuildTab::mCurrentBuilding = nullptr;
+PlayerEmpire *BuildTab::mEmpire = nullptr;
+std::vector<Building* > BuildTab::mBuildings = std::vector<Building* >();
+std::vector<GUI_Label* > BuildTab::mBuildingLabels = std::vector<GUI_Label* >();
+std::vector<GUI_Button* > BuildTab::mBuildingButtons = std::vector<GUI_Button* >();
+GUI_Panel BuildTab::mPanel = GUI_Panel();
+GUI_Label BuildTab::mTitle = GUI_Label();
+sf::Font BuildTab::mFont = sf::Font();
 
 
 void BuildTab::setup(sf::Font f, void (*close)()) {
-    font = f;
-    panel.setup({5, constants::UPPERGUIHEIGHT}, {400, 600}, sf::Color::Blue, sf::Color::Yellow, font, close);
-    title.setup("BUILDINGS", sf::Color::White, font, 50, {15, constants::UPPERGUIHEIGHT + 15});
+    mFont = f;
+    mPanel.setup({5, constants::UPPERGUIHEIGHT}, {400, 600}, sf::Color::Blue, sf::Color::Yellow, mFont, close);
+    mTitle.setup("BUILDINGS", sf::Color::White, mFont, 50, {15, constants::UPPERGUIHEIGHT + 15});
 }
 
-void BuildTab::render(sf::RenderWindow *window) {
-    panel.render(window);
-    title.render(window);
+void BuildTab::render(sf::RenderWindow& window) {
+    mPanel.render(window);
+    mTitle.render(window);
 
-    for(auto e : buildingLabels) {
+    for(auto e : mBuildingLabels) {
         e->render(window);
     }
     int i = 0;
-    for(auto e : buildings) {
+    for(auto e : mBuildings) {
         e->render(window, (i % 3) * 100 + 30, i / 3 * 150 + 200);
         i++;
     }
 }
 
 void BuildTab::getInput(sf::Vector2i mousePos) {
-    panel.getExit(mousePos);
+    mPanel.getExit(mousePos);
 
     int k = 0;
-    for(auto e : buildingButtons) {
+    for(auto e : mBuildingButtons) {
         if(e->checkForClick(mousePos)) {
             
             //this->empty();
             sf::Color colors[2] = {sf::Color::Green, sf::Color::Red};
             std::string strings[2] = {"YES", "NO"};
-            currentBuilding = buildings[k];
+            mCurrentBuilding = mBuildings[k];
             void (*buttonFunctions[2])() = {[] (){
                 //buildings[k]->buildSignal = true;
                 build();
-                GUI_Alert::visible = false;
+                GUI_Alert::mVisible = false;
                 //std::cout << "Close!" << std::endl;
                 
-            }, [] (){ GUI_Alert::visible = false; openTab = Tabs::none;}};
-            GUI_Alert::setup(sf::Color::Blue, buildings[k]->name, "Are you shure you want\n to build this building?", sf::Color::White, 2, colors, strings, font, buttonFunctions);
+            }, [] (){ GUI_Alert::mVisible = false; openTab = Tabs::none;}};
+            GUI_Alert::setup(sf::Color::Blue, mBuildings[k]->mName, "Are you shure you want\n to build this building?", sf::Color::White, 2, colors, strings, mFont, buttonFunctions);
             GUI_Alert::show();
             
         }

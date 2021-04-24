@@ -18,35 +18,35 @@ enum class ResearchField {
 class Research {
     public:   
         void setup(std::string name, int cost, ResearchTypes type, ResearchField field, std::string filePath, int difficulty);
-        std::string getName() { return name; }
-        int getCost() { return cost; }
-        ResearchTypes getType() { return type; }
-        ResearchField getField() { return field; }
-        int finishedPercentage;
+        std::string getName() { return mName; }
+        int getCost() { return mCost; }
+        ResearchTypes getType() { return mType; }
+        ResearchField getField() { return mField; }
+        int mFinishedPercentage;
         void finishResearch(PlayerEmpire *e);
-        void unlockBuilding(Building *b) { this->building = b; }
+        void unlockBuilding(Building *b) { this->mBuilding = b; }
         void unlockShip(Spaceship *s) { 
-            this->spaceship = s;
-            this->spr.setScale({0.1f, 0.1f});
+            this->mSpaceship = s;
+            this->mSpr.setScale({0.1f, 0.1f});
         }
-        void unlockPart(SpaceshipPart *p) { this->part = p; }
-        void setResearched(bool x) { this->isResearched = x; }
-        bool getResearched() { return this->isResearched; }
-        int getDifficulty() { return this->difficulty; }
+        void unlockPart(SpaceshipPart *p) { this->mPart = p; }
+        void setResearched(bool x) { this->mIsResearched = x; }
+        bool getResearched() { return this->mIsResearched; }
+        int getDifficulty() { return this->mDifficulty; }
 
-        sf::Sprite spr;
+        sf::Sprite mSpr;
     private:   
-        sf::Texture tex;
+        sf::Texture mTex;
         
-        std::string name;
-        ResearchTypes type;
-        ResearchField field;
-        Building *building;
-        Spaceship *spaceship;
-        SpaceshipPart *part;
-        bool isResearched;
-        int difficulty;
-        int cost;
+        std::string mName;
+        ResearchTypes mType;
+        ResearchField mField;
+        Building *mBuilding;
+        Spaceship *mSpaceship;
+        SpaceshipPart *mPart;
+        bool mIsResearched;
+        int mDifficulty;
+        int mCost;
 };
 
 #endif

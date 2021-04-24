@@ -1,14 +1,14 @@
 #include "PlayerEmpireTab.h"
 
-PlayerEmpire *PlayerEmpireTab::currentPlayerEmpire = nullptr;
+PlayerEmpire *PlayerEmpireTab::mCurrentPlayerEmpire = nullptr;
 
 void PlayerEmpireTab::setPlayerEmpire(PlayerEmpire *e) {
-    currentPlayerEmpire = e;
-    title.setString(e->getName());
-    empireColor.setFillColor(e->getEmpireColor());
-    raceTex.loadFromFile(e->getRace());
-    flagTex.loadFromFile(e->getFlag());
-    raceSprite.setTexture(raceTex);
-    flagSprite.setTexture(flagTex);
-    leaderLabel.setString(e->getLeaderName());
+    mCurrentPlayerEmpire = e;
+    mTitle.setString(e->getName());
+    mEmpireColor.setFillColor(e->getEmpireColor());
+    mRaceTex.loadFromFile(e->getRace());
+    mFlagTex.loadFromFile(e->getFlag());
+    mRaceSprite.setTexture(mRaceTex);
+    mFlagSprite.setTexture(mFlagTex);
+    mLeaderLabel.setString(e->getLeaderName());
 }

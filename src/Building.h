@@ -13,20 +13,20 @@ class Building {
     public:   
         Building() {}
         ~Building() {}
-        int cost;
+        int mCost;
         void setup(int cost, std::string name, std::string texturePath, BuildingTypes type);
-        void setEmpire(unsigned int empireID) { this->empireID = empireID; }
-        unsigned int getEmpire() { return empireID; }
-        sf::Texture buildingTexture;
-        sf::Sprite buildingSprite;
-        std::string name;
-        BuildingTypes type;
+        void setEmpire(unsigned int empireID) { this->mEmpireID = empireID; }
+        unsigned int getEmpire() { return mEmpireID; }
+        sf::Texture mBuildingTexture;
+        sf::Sprite mBuildingSprite;
+        std::string mName;
+        BuildingTypes mType;
         void destroy();
-        void render(sf::RenderWindow *window, int x, int y);
-        bool buildSignal;
+        void render(sf::RenderWindow& window, int x, int y);
+        bool mBuildSignal;
 
     private:
-        unsigned int empireID;
+        unsigned int mEmpireID;
         
 
 };

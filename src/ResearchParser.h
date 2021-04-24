@@ -169,11 +169,11 @@ class ResearchParser {
             b->setup(name, cost, type, field, filePath, difficulty);
             switch(type) {
                 case ResearchTypes::Buff: break;
-                case ResearchTypes::UnlockBuilding: b->unlockBuilding(BuildingsParser::buildings[dataIndex]);
+                case ResearchTypes::UnlockBuilding: b->unlockBuilding(BuildingsParser::mBuildings[dataIndex]);
                         break;
-                case ResearchTypes::UnlockShip: b->unlockShip(SpaceshipsParser::spaceships[dataIndex]);
+                case ResearchTypes::UnlockShip: b->unlockShip(SpaceshipsParser::mSpaceships[dataIndex]);
                         break;
-                case ResearchTypes::UnlockShipPart: b->unlockPart(SpaceshipPartParser::spaceshipParts[dataIndex]);
+                case ResearchTypes::UnlockShipPart: b->unlockPart(SpaceshipPartParser::mSpaceshipParts[dataIndex]);
                         break;
                 default: std::cout << "Invalid type!" << std::endl;
             }
@@ -185,7 +185,7 @@ class ResearchParser {
         }
 
     public:   
-        static std::vector<Research *> researches;
+        static std::vector<Research *> mResearches;
         static void setup() {
             parse();
         }
@@ -197,7 +197,7 @@ class ResearchParser {
                 Research *p = parseResearch(line);
                 if(p != nullptr) {
                     //printResearch(p);
-                    researches.push_back(p);
+                    mResearches.push_back(p);
                 }
             }
             file.close();

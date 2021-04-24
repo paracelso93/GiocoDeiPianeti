@@ -9,7 +9,7 @@ class PlayerEmpireTab : public EmpireTab {
         static void setPlayerEmpire(PlayerEmpire *e);
 
     private:  
-        static PlayerEmpire *currentPlayerEmpire;
+        static PlayerEmpire *mCurrentPlayerEmpire;
 };
 
 #endif

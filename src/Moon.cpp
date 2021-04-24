@@ -13,30 +13,30 @@ Moon::~Moon()
 
 void Moon::createMoon(int ord, double K, float previousDistance, constants::PlanetSize pSize)
 {
-    order = ord;
+    mOrder = ord;
     switch(pSize) {
-        case constants::PlanetSize::Psmall: mass = (rand() % 50) / 400.f + 0.001;
-                    radius = (float)(rand() % 5) / 400.f + 0.0001;
+        case constants::PlanetSize::Psmall: mMass = (rand() % 50) / 400.f + 0.001;
+                    mRadius = (float)(rand() % 5) / 400.f + 0.0001;
                     break;
-        case constants::PlanetSize::Pnormal: mass = (rand() % 50) / 100.f + 0.001;
-                    radius = (float)(rand() % 5) / 100.f + 0.001;
+        case constants::PlanetSize::Pnormal: mMass = (rand() % 50) / 100.f + 0.001;
+                    mRadius = (float)(rand() % 5) / 100.f + 0.001;
                     break;
-        case constants::PlanetSize::Plarge: mass = (rand() % 50) / 50.f + 0.01;
-                    radius = (float)(rand() % 5) / 50.f + 0.01;
+        case constants::PlanetSize::Plarge: mMass = (rand() % 50) / 50.f + 0.01;
+                    mRadius = (float)(rand() % 5) / 50.f + 0.01;
                     break;
     }
     // mass = mass * EARTHMASS;
     // radius = radius * EARTHRADIUS;
 
-    color = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
-    distance = 25 * (order + 1) + previousDistance + 10;
-    float realDistance = (distance / 150) * constants::EARTHDISTANCE;
-    T = sqrt(pow(realDistance, 3) / K);
-    angularVelocity = constants::FULLANGLE / T;
+    mColor = sf::Color(rand() % 256, rand() % 256, rand() % 256, rand() % 156 + 100);
+    mDistance = 25 * (mOrder + 1) + previousDistance + 10;
+    float realDistance = (mDistance / 150) * constants::EARTHDISTANCE;
+    mT = sqrt(pow(realDistance, 3) / K);
+    mAngularVelocity = constants::FULLANGLE / mT;
 
-    if (angularVelocity == 0)
+    if (mAngularVelocity == 0)
     {
-        angularVelocity = 1;
+        mAngularVelocity = 1;
     }
-    angle = 0;
+    mAngle = 0;
 }

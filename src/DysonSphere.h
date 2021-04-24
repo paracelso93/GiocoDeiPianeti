@@ -8,16 +8,16 @@ class DysonSphere {
     public:  
         DysonSphere() {}
         ~DysonSphere() {} 
-        int getProduction() { return energyProduction; }
+        int getProduction() { return mEnergyProduction; }
         void setup(Star *star, int energy);
         void setTexture(const std::string& filePath);
-        static void render(sf::RenderWindow *window);
+        static void render(sf::RenderWindow& window);
         
     private:   
-        Star *star;
-        static sf::Texture sphereTexture;
-        static sf::Sprite sprite;
-        int energyProduction;
+        Star *mStar;
+        static sf::Texture mSphereTexture;
+        static sf::Sprite mSprite;
+        int mEnergyProduction;
 };
 
 

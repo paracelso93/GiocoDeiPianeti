@@ -6,21 +6,21 @@
 class Star
 {
     private:
-        double K;
+        double mK;
         
     public:
-        int x, y;
-        bool exists;
-        float radius;
-        float mass;
-        std::string name;
-        sf::CircleShape orbits[8];
-        sf::Color color;
-        sf::CircleShape shape;
-        sf::CircleShape guiShape;
-        Planet planets[8];
-        int nump;
-        bool hasDysonSphere;
+        int mX, mY;
+        bool mExists;
+        float mRadius;
+        float mMass;
+        std::string mName;
+        sf::CircleShape mOrbits[8];
+        sf::Color mColor;
+        sf::CircleShape mShape;
+        sf::CircleShape mGuiShape;
+        Planet mPlanets[8];
+        int mNumP;
+        bool mHasDysonSphere;
         
         Star();
         virtual ~Star();

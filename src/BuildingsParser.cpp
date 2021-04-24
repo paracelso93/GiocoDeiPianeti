@@ -1,3 +1,3 @@
 #include "BuildingsParser.h"
 
-std::vector<Building *> BuildingsParser::buildings = std::vector<Building *>();
+std::vector<Building *> BuildingsParser::mBuildings = std::vector<Building *>();

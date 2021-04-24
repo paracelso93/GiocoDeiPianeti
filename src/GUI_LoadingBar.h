@@ -7,15 +7,15 @@ class GUI_LoadingBar {
     public:   
         void setup(int x, int y, int w, int h, sf::Color bgcolor, sf::Color fgcolor, float max, float startvalue = 0.f);
         void update(float dt);
-        void render(sf::RenderWindow *window);
-        bool completed;
+        void render(sf::RenderWindow& window);
+        bool mCompleted;
     private:   
-        float max;
-        float currentValue;
-        int w;
-        int h;
-        sf::RectangleShape background;
-        sf::RectangleShape foreground;
+        float mMax;
+        float mCurrentValue;
+        int mWidth;
+        int mHeight;
+        sf::RectangleShape mBackground;
+        sf::RectangleShape mForeground;
 
 };
 

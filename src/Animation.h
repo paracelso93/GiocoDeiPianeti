@@ -11,16 +11,16 @@ class Animation {
         void setPosition(sf::Vector2f position);
         void setScale(sf::Vector2f scale);
         void update();
-        void render(sf::RenderWindow *window);
+        void render(sf::RenderWindow& window);
     private:  
-        int totalFrames;
-        int currentFrame;
-        sf::Vector2f position;
-        sf::Vector2i size;
-        int rows;
-        int cols;
-        sf::Texture texture;
-        sf::Sprite sprite;
+        int mTotalFrames;
+        int mCurrentFrame;
+        sf::Vector2f mPosition;
+        sf::Vector2i mSize;
+        int mRows;
+        int mCols;
+        sf::Texture mTexture;
+        sf::Sprite mSprite;
 };
 
 #endif

@@ -8,30 +8,30 @@
 class Planet
 {
     private:
-        double T, K;
-        int order;
-        unsigned int occupierID;
+        double mT, mK;
+        int mOrder;
+        unsigned int mOccupierID;
 
     public:
         Planet();
         virtual ~Planet();
-        float radius;
-        sf::Color color;
-        float angularVelocity;
-        float angle;
-        float distance;
-        float mass;
-        int x, y;
-        Moon moons[8];
-        int numn;
-        std::string name;
+        float mRadius;
+        sf::Color mColor;
+        float mAngularVelocity;
+        float mAngle;
+        float mDistance;
+        float mMass;
+        int mX, mY;
+        Moon mMoons[8];
+        int mNumn;
+        std::string mName;
         //std::vector<Building *> buildings;
-        std::vector<Building *> buildings;
-        std::vector<Building *> availbleBuildings;
-        constants::PlanetSize size;
+        std::vector<Building *> mBuildings;
+        std::vector<Building *> mAvailableBuildings;
+        constants::PlanetSize mSize;
         void createPlanet(int ord, double K, float previousDistance);
-        unsigned int getOccupierID() { return occupierID; }
-        void setOccupierID(unsigned int id) { this->occupierID = id; }
+        unsigned int getOccupierID() { return mOccupierID; }
+        void setOccupierID(unsigned int id) { this->mOccupierID = id; }
 };
 
 #endif // PLANET_H

@@ -195,7 +195,7 @@ class SpaceshipPartParser {
         static void printSpaceshipPart(SpaceshipPart *p) {
             std::cout << p->getName() << " cost:" << p->getCost() << std::endl;
         }
-        static std::vector<SpaceshipPart *> spaceshipParts;
+        static std::vector<SpaceshipPart *> mSpaceshipParts;
         static void setup() {
             parse();
         }
@@ -207,7 +207,7 @@ class SpaceshipPartParser {
                 SpaceshipPart *p = parseSpaceshipPart(line);
                 if(p != nullptr) {
                     //printSpaceshipPart(p);
-                    spaceshipParts.push_back(p);
+                    mSpaceshipParts.push_back(p);
                 }
             }
             file.close();

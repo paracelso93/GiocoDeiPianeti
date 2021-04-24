@@ -1,85 +1,85 @@
 #include "Game.h"
 
-DysonSphere Game::startingSphere = DysonSphere();
-GameStates Game::state = GameStates::battle;
-Empire Game::empires[2] = {Empire(), Empire()};
-Star* Game::stars = nullptr;
-PlayerEmpire Game::playerEmpire = PlayerEmpire();
-sf::Font Game::font = sf::Font();
+DysonSphere Game::mStartingSphere = DysonSphere();
+GameStates Game::mState = GameStates::battle;
+Empire Game::mEmpires[2] = {Empire(), Empire()};
+Star* Game::mStars = nullptr;
+PlayerEmpire Game::mPlayerEmpire = PlayerEmpire();
+sf::Font Game::mFont = sf::Font();
 
 void Game::createButtons(GUI_Button buttons[]) {
     sf::RectangleShape buttonShape({40, 40});
     
     buttonShape.setPosition({625.f, 25.f});
-    buttons[1].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">", 15);
-    buttons[1].setFunction([]() { TimeController::timeDilation += 1; });
+    buttons[1].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">", 15);
+    buttons[1].setFunction([]() { TimeController::mTimeDilation += 1; });
 
     buttonShape.setPosition({675.f, 25.f});
-    buttons[0].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">>", 15);
-    buttons[0].setFunction([]() { TimeController::timeDilation += 10; });
+    buttons[0].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">>", 15);
+    buttons[0].setFunction([]() { TimeController::mTimeDilation += 10; });
 
     buttonShape.setPosition({725.f, 25.f});
-    buttons[2].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">>>", 15);
-    buttons[2].setFunction([]() { TimeController::timeDilation += 100; });
+    buttons[2].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, ">>>", 15);
+    buttons[2].setFunction([]() { TimeController::mTimeDilation += 100; });
 
     buttonShape.setPosition({845.f, 25.f});
-    buttons[3].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<<<", 15);
-    buttons[3].setFunction([]() { if(TimeController::timeDilation > 100) TimeController::timeDilation -= 100; });
+    buttons[3].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<<<", 15);
+    buttons[3].setFunction([]() { if(TimeController::mTimeDilation > 100) TimeController::mTimeDilation -= 100; });
 
     buttonShape.setPosition({895.f, 25.f});
-    buttons[4].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<<", 15);
-    buttons[4].setFunction([]() { if(TimeController::timeDilation > 10) TimeController::timeDilation -= 10; });
+    buttons[4].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<<", 15);
+    buttons[4].setFunction([]() { if(TimeController::mTimeDilation > 10) TimeController::mTimeDilation -= 10; });
 
     buttonShape.setPosition({945.f, 25.f});
-    buttons[5].setup(font, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<", 15);
-    buttons[5].setFunction([]() { if(TimeController::timeDilation > 1) TimeController::timeDilation -= 1; });
+    buttons[5].setup(mFont, buttonShape, {150, 156, 163, 255}, {93, 99, 107, 255}, "<", 15);
+    buttons[5].setFunction([]() { if(TimeController::mTimeDilation > 1) TimeController::mTimeDilation -= 1; });
 }
 
 void Game::startNewGame() {
-   Parser::createGalaxy(stars);
-   //state = GameStates::game;
+   Parser::createGalaxy(mStars);
+   mState = GameStates::game;
    // bool endLoop1 = false;
    // bool endLoop2 = false;
    bool hasShip = false;
     for(int i = 0; i < constants::GRIDSIDENUMBER; i++) {
         for(int j = 0; j < constants::GRIDSIDENUMBER; j++) {
-            if(stars[i * constants::GRIDSIDENUMBER + j].exists) {
-                if(stars[i * constants::GRIDSIDENUMBER + j].nump != 0 && !hasShip) {
-                    stars[i * constants::GRIDSIDENUMBER + j].planets[0].x = constants::STARGUIX + stars[i * constants::GRIDSIDENUMBER + j].planets[0].distance;
-                    stars[i * constants::GRIDSIDENUMBER + j].planets[0].y = constants::STARGUIY + (stars[i * constants::GRIDSIDENUMBER + j].guiShape.getRadius() - (stars[i * constants::GRIDSIDENUMBER + j].planets[0].radius));
+            if(mStars[i * constants::GRIDSIDENUMBER + j].mExists) {
+                if(mStars[i * constants::GRIDSIDENUMBER + j].mNumP != 0 && !hasShip) {
+                    mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mX = constants::STARGUIX + mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mDistance;
+                    mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mY = constants::STARGUIY + (mStars[i * constants::GRIDSIDENUMBER + j].mGuiShape.getRadius() - (mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mRadius));
                     //ship.setup(&stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], 100, "La Santa Maria", 0, 0, "../Assets/ship.png", SpaceShipTypes::Scout, 0, 0.1f, 20);
                     //ship2.setup(&stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], 100, "La Niña", 0, 0, "../Assets/ship.png", SpaceShipTypes::Scout, 40, 0.1f, 20);
-                    playerEmpire.setup(&stars[i * constants::GRIDSIDENUMBER + j].planets[0], {i, j}, &stars[i * constants::GRIDSIDENUMBER + j], sf::Color::Green, 1, font, "IMPERIUM OF MAN", openEconomicsTab, openShipsTab, openResearchTab, openPlayerEmpireTab);
-                    playerEmpire.setRace("../Assets/human.jpg");
-                    playerEmpire.setFlag("../Assets/imperiumFlag.png");
-                    playerEmpire.setLeaderName("Lord Protettore Antonino III\n Cannavacciuolo");
+                    mPlayerEmpire.setup(&mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0], {i, j}, &mStars[i * constants::GRIDSIDENUMBER + j], sf::Color::Green, 1, mFont, "IMPERIUM OF MAN", openEconomicsTab, openShipsTab, openResearchTab, openPlayerEmpireTab);
+                    mPlayerEmpire.setRace("../Assets/human.jpg");
+                    mPlayerEmpire.setFlag("../Assets/imperiumFlag.png");
+                    mPlayerEmpire.setLeaderName("Lord Protettore Antonino III\n Cannavacciuolo");
                     
-                    PlayerEmpireTab::setPlayerEmpire(&playerEmpire);
+                    PlayerEmpireTab::setPlayerEmpire(&mPlayerEmpire);
                     //SpaceshipTab::addSpaceship(&ship);
                     //SpaceshipTab::addSpaceship(&ship2);
-                    startingSphere.setTexture("../Assets/epicBuildingSprites/dyson.png");
-                    startingSphere.setup(&stars[i * constants::GRIDSIDENUMBER + j], 1);
+                    mStartingSphere.setTexture("../Assets/epicBuildingSprites/dyson.png");
+                    mStartingSphere.setup(&mStars[i * constants::GRIDSIDENUMBER + j], 1);
 
-                    playerEmpire.createDysonSphere(&startingSphere);
+                    mPlayerEmpire.createDysonSphere(&mStartingSphere);
                     hasShip = true;
 
-                    for(auto build : BuildingsParser::buildings) {
-                        BuildTab::addBuilding(build, &stars[i * constants::GRIDSIDENUMBER + j].planets[0], &playerEmpire);
-                        stars[i * constants::GRIDSIDENUMBER + j].planets[0].availbleBuildings.push_back(build);
+                    for(auto build : BuildingsParser::mBuildings) {
+                        BuildTab::addBuilding(build, &mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0], &mPlayerEmpire);
+                        mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mAvailableBuildings.push_back(build);
                     }
                     int ind = 0;
-                    for(auto ship : SpaceshipsParser::spaceships) {
+                    for(auto ship : SpaceshipsParser::mSpaceships) {
                         //ship->position(&stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], 0, 0, ind * 40);
-                        playerEmpire.availbleShips.push_back(ship);
+                        mPlayerEmpire.mAvailableShips.push_back(ship);
                         //SpaceshipTab::addSpaceship(ship);
-                        SpaceshipBuildTab::addSpaceship(ship, &stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], ind * 40);
+                        SpaceshipBuildTab::addSpaceship(ship, &mStars[i * constants::GRIDSIDENUMBER + j], &mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0], ind * 40);
                         ind ++;
                     }
 
-                    for(auto res : ResearchParser::researches) {
+                    for(auto res : ResearchParser::mResearches) {
                         ResearchTab::addResearch(res);
                         //playerEmpire.availbleResearches.push_back(res);
-                        ResearchTab::setEmpire(&playerEmpire);
+                        ResearchTab::setEmpire(&mPlayerEmpire);
                     }
                     
                     /*if(!endLoop1) {
@@ -108,15 +108,15 @@ void Game::startNewGame() {
 }
 
 void Game::loadOldGame() {
-    Parser::parseGalaxy(stars);
-    state = GameStates::game;
+    Parser::parseGalaxy(mStars);
+    mState = GameStates::game;
     bool hasShip = false;
     for(int i = 0; i < constants::GRIDSIDENUMBER; i++) {
         for(int j = 0; j < constants::GRIDSIDENUMBER; j++) {
-            if(stars[i * constants::GRIDSIDENUMBER + j].exists) {
-                if(stars[i * constants::GRIDSIDENUMBER + j].nump != 0 && !hasShip) {
-                    stars[i * constants::GRIDSIDENUMBER + j].planets[0].x = constants::STARGUIX + stars[i * constants::GRIDSIDENUMBER + j].planets[0].distance;
-                    stars[i * constants::GRIDSIDENUMBER + j].planets[0].y = constants::STARGUIY + (stars[i * constants::GRIDSIDENUMBER + j].guiShape.getRadius() - (stars[i * constants::GRIDSIDENUMBER + j].planets[0].radius));
+            if(mStars[i * constants::GRIDSIDENUMBER + j].mExists) {
+                if(mStars[i * constants::GRIDSIDENUMBER + j].mNumP != 0 && !hasShip) {
+                    mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mX = constants::STARGUIX + mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mDistance;
+                    mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mY = constants::STARGUIY + (mStars[i * constants::GRIDSIDENUMBER + j].mGuiShape.getRadius() - (mStars[i * constants::GRIDSIDENUMBER + j].mPlanets[0].mRadius));
                     //ship.setup(&stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], 100, "La Santa Maria", 0, 0, "../Assets/ship.png", SpaceShipTypes::Scout, 0, 0.1f, 100);
                     //ship2.setup(&stars[i * constants::GRIDSIDENUMBER + j], &stars[i * constants::GRIDSIDENUMBER + j].planets[0], 100, "La Santa Maria", 0, 0, "../Assets/ship.png", SpaceShipTypes::Scout, 40, 0.1f, 20);
                     hasShip = true;
@@ -131,92 +131,93 @@ void Game::setup() {
     //sf::VideoMode windowSize(constants::SCREENX, constants::SCREENY);
     //window = sf::RenderWindow(windowSize, "SPACE");
 
-    loadingTexture.loadFromFile("../Assets/gui/loading.png");
+    mLoadingTexture.loadFromFile("../Assets/gui/loading.png");
     
-    loadingSprite.setTexture(loadingTexture);
+    mLoadingSprite.setTexture(mLoadingTexture);
 
     BuildingsParser::setup();
     SpaceshipsParser::setup();
     SpaceshipPartParser::setup();
     ResearchParser::setup();
 
-    openTab = Tabs::none;
+    openTab = Tabs::analizeShips;
 
-    window.clear();
+    mWindow.clear();
 
-    window.draw(loadingSprite);
+    mWindow.draw(mLoadingSprite);
 
-    window.display();
+    mWindow.display();
 
 
     //std::cout << "obama" << std::endl;
-    mouseWheelDelta = 1.f;
+    mMouseWheelDelta = 1.f;
 
-    stars = new Star[constants::GRIDSIDENUMBER * constants::GRIDSIDENUMBER];
+    mStars = new Star[constants::GRIDSIDENUMBER * constants::GRIDSIDENUMBER];
 
-    starview = sf::View(sf::FloatRect(0, constants::UPPERGUIHEIGHT, constants::SCREENX, constants::SCREENY - constants::UPPERGUIHEIGHT));
-    starview.setViewport(sf::FloatRect(0, 1.f / 11.f, 1.f, 10.f / 11.f));
+    mStarview = sf::View(sf::FloatRect(0, constants::UPPERGUIHEIGHT, constants::SCREENX, constants::SCREENY - constants::UPPERGUIHEIGHT));
+    mStarview.setViewport(sf::FloatRect(0, 1.f / 11.f, 1.f, 10.f / 11.f));
 
-    movement.setup();
+    mMovement.setup();
 
     //Animation anim;
     //anim.setup("../Assets/cruiserAnimation.png", 10, 1, 10, 21, 130);
     //anim.setPosition({100, 100});
     //anim.setScale({10, 10});
 
-    animationCountDown = 0.1f;
-    animationTime = 0.f;
+    mAnimationCountDown = 0.1f;
+    mAnimationTime = 0.f;
 
-    if(!font.loadFromFile("../Assets/gui/aspace_demo.otf")) {
+    if(!mFont.loadFromFile("../Assets/gui/aspace_demo.otf")) {
         std::cout << "Can't load Font!";
         return;
     }
-    state = GameStates::battle;
+    mState = GameStates::menu;
     
-    if(!backgroundMusic.openFromFile("../Assets/music/newdawn.wav")) {
+    if(!mBackgroundMusic.openFromFile("../Assets/music/newdawn.wav")) {
         std::cout << "couln't load music!\n";
         return;
     }
+
+    mCursorImg.loadFromFile("../Assets/gui/cursor.png");
     
-    cursorImg.loadFromFile("../Assets/gui/cursor.png");
+    mArrowC.loadFromPixels(mCursorImg.getPixelsPtr(), {16, 16}, {0, 0});
+    mCursorImg.loadFromFile("../Assets/gui/cursor.png");
     
-    arrowC.loadFromPixels(cursorImg.getPixelsPtr(), {16, 16}, {0, 0});
-    cursorImg.loadFromFile("../Assets/gui/cursor.png");
+    mHandC.loadFromPixels(mCursorImg.getPixelsPtr(), {16, 16}, {0, 0});
+    mBackgroundMusic.setLoop(true);
+    //mBackgroundMusic.play();
+    mWindow.setMouseCursor(mArrowC);
     
-    handC.loadFromPixels(cursorImg.getPixelsPtr(), {16, 16}, {0, 0});
-    backgroundMusic.setLoop(true);
-    //backgroundMusic.play();
-    window.setMouseCursor(arrowC);
-    
-    icon.loadFromFile("../Assets/gui/icon.png");
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    mIcon.loadFromFile("../Assets/gui/icon.png");
+    mWindow.setIcon(mIcon.getSize().x, mIcon.getSize().y, mIcon.getPixelsPtr());
 
     sf::Color colors[2] = {sf::Color::Green, sf::Color::Green};
     std::string strings[2] = {" ", " "};
     void (*functions[2])() = {[] (){}, [] (){}};
 
-    GUI_Alert::setup(sf::Color::Blue, "", "", sf::Color::White, 2, colors, strings, font, functions);
+    GUI_Alert::setup(sf::Color::Blue, "", "", sf::Color::White, 2, colors, strings, mFont, functions);
 
-    tick = 10.f * (500.f / TimeController::timeDilation);
-    timerTick = 0.f;
+    mTick = 10.f * (500.f / TimeController::mTimeDilation);
+    mTimerTick = 0.f;
 
-    selectBox.setRadius(constants::GRIDSIDELENGTH / 2.f);
-    selectBox.setOutlineColor(sf::Color::Green);
-    selectBox.setOutlineThickness(2.f);
-    selectBox.setFillColor(sf::Color(0, 0, 0, 0));
+    mSelectBox.setRadius(constants::GRIDSIDELENGTH / 2.f);
+    mSelectBox.setOutlineColor(sf::Color::Green);
+    mSelectBox.setOutlineThickness(2.f);
+    mSelectBox.setFillColor(sf::Color(0, 0, 0, 0));
 
-    EconomicsTab::setup(font, closeTab);
-    EconomicsTab::update(playerEmpire.getFunds(), 1, 0);
+    EconomicsTab::setup(mFont, closeTab);
+    EconomicsTab::update(mPlayerEmpire.getFunds(), 1, 0);
 
-    SpaceshipBuildTab::setup(font, closeTab);
-    SpaceshipBuildTab::setEmpire(&playerEmpire);
+    SpaceshipBuildTab::setup(mFont, closeTab);
+    SpaceshipBuildTab::setEmpire(&mPlayerEmpire);
     //EconomicsTab::visible = false;
 
-    BuildTab::setup(font, closeTab);
+    BuildTab::setup(mFont, closeTab);
 
-    SpaceshipTab::setup(font, closeTab);
-    ResearchTab::setup(font, closeTab);
-    PlayerEmpireTab::setup(font, closeTab);
+    SpaceshipTab::setup(mFont, closeTab);
+    ResearchTab::setup(mFont, closeTab);
+    PlayerEmpireTab::setup(mFont, closeTab);
+    SpaceshipAnalizeTab::setup(mFont, closeTab);
 
     //Animation publicGoal;
     //publicGoal.setup("../Assets/spaceshipSprites/publicGoal.png", 29, 6, 5, 2988, 2490);
@@ -225,41 +226,41 @@ void Game::setup() {
     obama.setSize({80, 80});
     obama.setPosition(525, 10);
 
-    parseButton.setup(font, obama, {100, 100, 100, 255}, {200, 100, 100, 255}, "PARSE", 18);
+    mParseButton.setup(mFont, obama, {100, 100, 100, 255}, {200, 100, 100, 255}, "PARSE", 18);
 
-    title.setFont(font);
-    title.setFillColor(sf::Color::White);
-    title.setCharacterSize(40);
-    title.setPosition(50, 25);
-    title.setString("GIOCO DEI PIANETI");
+    mTitle.setFont(mFont);
+    mTitle.setFillColor(sf::Color::White);
+    mTitle.setCharacterSize(40);
+    mTitle.setPosition(50, 25);
+    mTitle.setString("GIOCO DEI PIANETI");
 
-    if(state == GameStates::battle)
+    if(mState == GameStates::battle)
         startNewGame();
 
-    sampleBattle.setup(0, 1);
+    mSampleBattle.setup(0, 1);
     
-    battleMap.setup(20, 8);
-    sampleBattle.setMap(&battleMap);
+    mBattleMap.setup(20, 8);
+    mSampleBattle.setMap(&mBattleMap);
     int owo = 0;
-    for(auto s : playerEmpire.availbleShips) {
-        sampleBattle.setSpaceship(((owo < 2) ? 0 : 1), s);
+    for(auto s : mPlayerEmpire.mAvailableShips) {
+        mSampleBattle.setSpaceship(((owo < 2) ? 0 : 1), s);
         owo ++;
     }
     //owo = 0;
-    //for(auto s : playerEmpire.availbleShips) {
-    //    sampleBattle.setSpaceship(((owo < 2) ? 0 : 1), s);
+    //for(auto s : mPlayerEmpire.availbleShips) {
+    //    mSampleBattle.setSpaceship(((owo < 2) ? 0 : 1), s);
     //    owo ++;
     //}
-    //sampleBattle.setSpaceship(0, playerEmpire.availbleShips[0]);
-    //sampleBattle.setSpaceship(0, playerEmpire.availbleShips[1]);
-    //sampleBattle.setSpaceship(1, playerEmpire.availbleShips[2]);
-    //sampleBattle.setSpaceship(1, playerEmpire.availbleShips[3]);
-    sampleBattle.generateBattlePositions(0, 1);
-    std::cout << "obama" << std::endl;
+    //sampleBattle.setSpaceship(0, mPlayerEmpire.availbleShips[0]);
+    //sampleBattle.setSpaceship(0, mPlayerEmpire.availbleShips[1]);
+    //sampleBattle.setSpaceship(1, mPlayerEmpire.availbleShips[2]);
+    //sampleBattle.setSpaceship(1, mPlayerEmpire.availbleShips[3]);
+    mSampleBattle.generateBattlePositions(0, 1);
+    //std::cout << "obama" << std::endl;
     
-    stargui.setup(TimeController::timeDilation, font, openBuildingTab, openShipsBuildTab);
+    mStargui.setup(TimeController::mTimeDilation, mFont, openBuildingTab, openShipsBuildTab);
 
-    selectBoxVisible = false;
+    mSelectBoxVisible = false;
 
     //sf::Shader shader;
     //if(!shader.loadFromFile("../Assets/shaders/border_shader.vert", "../Assets/shaders/border_shader.frag")) {
@@ -271,7 +272,7 @@ void Game::setup() {
 
     //BuildingsParser::parse(bees);
 
-    createButtons(buttons);
+    createButtons(mButtons);
 
     srand(time(NULL));
 
@@ -290,164 +291,167 @@ void Game::setup() {
         Parser::parseGalaxy(stars, GRIDSIDENUMBER);
     }*/
 
-    mousePos = sf::Mouse::getPosition(window);
+    mMousePos = sf::Mouse::getPosition(mWindow);
 
-    isHoveringCursor = false;
+    mIsHoveringCursor = false;
 
-    upGUI.setup({5, 5}, {constants::SCREENX - 10, 90}, sf::Color::Blue, sf::Color::Yellow, font, [] (){});
+    mUpGUI.setup({5, 5}, {constants::SCREENX - 10, 90}, sf::Color::Blue, sf::Color::Yellow, mFont, [] (){});
     /*sf::RectangleShape upGUI({constants::SCREENX - 10, 90});
     upGUI.setFillColor(sf::Color::Blue);
     upGUI.setPosition({5, 5});
     upGUI.setOutlineThickness(5);
     upGUI.setOutlineColor(sf::Color::Yellow);*/
 
-    menuScreen.setup(font, startNewGame, loadOldGame, quitGame);
+    mMenuScreen.setup(mFont, startNewGame, loadOldGame, quitGame);
 
-    hasSelectedStar = false;
-    mousePos = sf::Vector2i(0, 0);
-    lookingAtPlanet = false;
+    mHasSelectedStar = false;
+    mMousePos = sf::Vector2i(0, 0);
+    mLookingAtPlanet = false;
 }
 
 void Game::getInput() {
-    if(state == GameStates::quit) {
-        window.close();
+    if(mState == GameStates::quit) {
+        mWindow.close();
     }
 
-    dt = clock.restart();
-    timerTick += dt.asSeconds();
-    while (window.pollEvent(event))
+    mDt = mClock.restart();
+    mTimerTick += mDt.asSeconds();
+    while (mWindow.pollEvent(mEvent))
     {
         bool moving = false;
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            movement.movingUp = true;
+            mMovement.movingUp = true;
             moving = true;
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            movement.movingDown = true;
+            mMovement.movingDown = true;
             moving = true;
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            movement.movingLeft = true;
+            mMovement.movingLeft = true;
             moving = true;
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            movement.movingRight = true;
+            mMovement.movingRight = true;
             moving = true;
         }
         if(!moving) {
-            movement.movingUp = false;
-            movement.movingDown = false;
-            movement.movingLeft = false;
-            movement.movingRight = false;
+            mMovement.movingUp = false;
+            mMovement.movingDown = false;
+            mMovement.movingLeft = false;
+            mMovement.movingRight = false;
         }
-        switch (event.type)
+        switch (mEvent.type)
         {
         case sf::Event::KeyPressed:
-            if(event.key.code == sf::Keyboard::Escape) {
-                state = GameStates::menu;
+            if(mEvent.key.code == sf::Keyboard::Escape) {
+                mState = GameStates::menu;
             }
 
         break;
 
         case sf::Event::Closed:
-            window.close();
+            mWindow.close();
             break;
 
         case sf::Event::MouseButtonPressed:
-            if(state == GameStates::game) {
-                if(stargui.visible) {
-                    if(stargui.update(mousePos)) {
-                        lookingAtPlanet = true;
+            if(mState == GameStates::game) {
+                if(mStargui.mVisible) {
+                    if(mStargui.update(mMousePos)) {
+                        mLookingAtPlanet = true;
                         break;
                     } else {
-                        lookingAtPlanet = false;
+                        mLookingAtPlanet = false;
                     }
                 }
                 for(int i = 0; i < 6; i++) {
-                    if(buttons[i].checkForClick(mousePos)) {
-                            buttons[i].click();
-                            stargui.timeDilationText.setString(std::to_string((int)TimeController::timeDilation) + "X");
+                    if(mButtons[i].checkForClick(mMousePos)) {
+                        mButtons[i].click();
+                        mStargui.mTimeDilationText.setString(std::to_string((int)TimeController::mTimeDilation) + "X");
                     }
                 }
-                if(parseButton.checkForClick(mousePos)) {
-                    Parser::parseGalaxy(stars);
+                if(mParseButton.checkForClick(mMousePos)) {
+                    Parser::parseGalaxy(mStars);
                 }
 
-                playerEmpire.update(mousePos);
+                mPlayerEmpire.update(mMousePos);
                 switch(openTab) {
                     case Tabs::economic: 
-                        EconomicsTab::getInput(mousePos);
+                        EconomicsTab::getInput(mMousePos);
                         break;
                     case Tabs::building:   
-                        BuildTab::getInput(mousePos);
+                        BuildTab::getInput(mMousePos);
                         break;
                     case Tabs::ships:  
-                        SpaceshipTab::getInput(mousePos);
+                        SpaceshipTab::getInput(mMousePos);
                         break;
                     case Tabs::buildShips:   
-                        SpaceshipBuildTab::getInput(mousePos);
+                        SpaceshipBuildTab::getInput(mMousePos);
                         break;
                     case Tabs::research:   
-                        ResearchTab::getInput(mousePos);
+                        ResearchTab::getInput(mMousePos);
                         break;
                     case Tabs::playerEmpire:   
-                        PlayerEmpireTab::getInput(mousePos);
+                        PlayerEmpireTab::getInput(mMousePos);
+                        break;
+                    case Tabs::analizeShips:
+                        SpaceshipAnalizeTab::getInput(mMousePos);
                         break;
                     default:  break;
                 }
-                GUI_Alert::getInput(mousePos);
+                GUI_Alert::getInput(mMousePos);
 
-            } else if(state == GameStates::menu) {
-                menuScreen.checkForClicks(mousePos);
-            } else if(state == GameStates::battle) {
-                sampleBattle.getInput(mousePos);
+            } else if(mState == GameStates::menu) {
+                mMenuScreen.checkForClicks(mMousePos);
+            } else if(mState == GameStates::battle) {
+                mSampleBattle.getInput(mMousePos);
             }
-            lookingAtPlanet = false;
+                mLookingAtPlanet = false;
             break;
 
         case sf::Event::MouseButtonReleased:
-            //std::cout << "mousePos: " << mousePos.x << ":" << mousePos.y << std::endl;
-            if(state == GameStates::game) {
-                if(!lookingAtPlanet) {
-                    hasSelectedStar = false;
+            //std::cout << "mMousePos: " << mMousePos.x << ":" << mMousePos.y << std::endl;
+            if(mState == GameStates::game) {
+                if(!mLookingAtPlanet) {
+                    mSelectBoxVisible = false;
                     for (int i = 0; i < constants::GRIDSIDENUMBER; i++)
                     {
                         for (int j = 0; j < constants::GRIDSIDENUMBER; j++)
                         {
                             sf::RectangleShape shape;
-                            sf::Vector2f newMousePos = window.mapPixelToCoords(mousePos, starview);
+                            sf::Vector2f newMousePos = mWindow.mapPixelToCoords(mMousePos, mStarview);
                             shape.setPosition(i * constants::GRIDSIDELENGTH, j * constants::GRIDSIDELENGTH + constants::UPPERGUIHEIGHT);
                             //shape.setPosition(
                             //    i * constants::GRIDSIDELENGTH * (1000 / starview.getSize().x) - (((1000 - starview.getSize().x) / 2000) * 1000) * (1000 / starview.getSize().x) - (starview.getCenter().x - starview.getSize().x * mouseWheelDelta / 2) / mouseWheelDelta,
                             //    j * constants::GRIDSIDELENGTH * (1000 / starview.getSize().y) + 100 - (((1000 - starview.getSize().y) / 2000) * 1000) * (1000 / starview.getSize().y) - (starview.getCenter().y - starview.getSize().y * mouseWheelDelta / 2 - 100) / mouseWheelDelta
                             //);
                             
-                            shape.setSize(sf::Vector2f(constants::GRIDSIDELENGTH * (1 / mouseWheelDelta), constants::GRIDSIDELENGTH * (1 / mouseWheelDelta)));
+                            shape.setSize(sf::Vector2f(constants::GRIDSIDELENGTH * (1 / mMouseWheelDelta), constants::GRIDSIDELENGTH * (1 / mMouseWheelDelta)));
                             if (shape.getGlobalBounds().contains(newMousePos))
                             {
-                                if (stars[i * constants::GRIDSIDENUMBER + j].exists)
+                                if (mStars[i * constants::GRIDSIDENUMBER + j].mExists)
                                 {
-                                    if(stargui.visible) {
-                                        if(mousePos.y > 600.f + constants::UPPERGUIHEIGHT) {
+                                    if(mStargui.mVisible) {
+                                        if(mMousePos.y > 600.f + constants::UPPERGUIHEIGHT) {
                                             break;
                                         }
                                     }
                                     if(openTab != Tabs::none) {
-                                        if(mousePos.y < constants::UPPERGUIHEIGHT + 600.f && mousePos.x < 405.f) {
+                                        if(mMousePos.y < constants::UPPERGUIHEIGHT + 600.f && mMousePos.x < 405.f) {
                                             break;
                                         }
                                     }
-                                    if(stargui.planetDescriptionVisible) {
-                                        if(mousePos.y < constants::STARGUIX * 2 && mousePos.x > constants::PLANETDESCRIPTIONX) {
+                                    if(mStargui.mPlanetDescriptionVisible) {
+                                        if(mMousePos.y < constants::STARGUIX * 2 && mMousePos.x > constants::PLANETDESCRIPTIONX) {
                                             break;
                                         }
                                     }
-                                    if(GUI_Alert::visible) {
-                                        if(mousePos.y > 390 && mousePos.y < 690 && mousePos.x > 710 && mousePos.x < 1210) {
+                                    if(GUI_Alert::mVisible) {
+                                        if(mMousePos.y > 390 && mMousePos.y < 690 && mMousePos.x > 710 && mMousePos.x < 1210) {
                                             break;
                                         }
                                     }
-                                    if(mousePos.y < constants::UPPERGUIHEIGHT) {
+                                    if(mMousePos.y < constants::UPPERGUIHEIGHT) {
                                         break;
                                     }
                                     //std::cout << starview.getCenter().x << ":" << starview.getCenter().y << std::endl;
@@ -455,48 +459,48 @@ void Game::getInput() {
                                     //std::cout << "Position: " <<  i * constants::GRIDSIDELENGTH + starview.getCenter().x - 500 << ":" << j * constants::GRIDSIDELENGTH + starview.getCenter().y - 500 << std::endl;
                                     //std::cout << "Ponk!\n";
                                     //stars[i * GRIDSIDENUMBER + j].color = sf::Color::White;
-                                    selectBoxVisible = true;
-                                    selectBox.setPosition(sf::Vector2f(i * constants::GRIDSIDELENGTH, j * constants::GRIDSIDELENGTH + constants::UPPERGUIHEIGHT));
-                                    hasSelectedStar = true;
-                                    stargui.setStar(stars[i * constants::GRIDSIDENUMBER + j]);
-                                    stargui.setVisible(true);
+                                    mSelectBoxVisible = true;
+                                    mSelectBox.setPosition(sf::Vector2f(i * constants::GRIDSIDELENGTH, j * constants::GRIDSIDELENGTH + constants::UPPERGUIHEIGHT));
+                                    mSelectBoxVisible = true;
+                                    mStargui.setStar(mStars[i * constants::GRIDSIDENUMBER + j]);
+                                    mStargui.setVisible(true);
                                 }
                             }
                         }
                     }
                 }
-                if (!hasSelectedStar)
+                if (!mSelectBoxVisible)
                 {
                     bool des = true;
                     for(int i = 0; i < 6; i++) {
-                        if(buttons[i].isClick()) {
-                            buttons[i].deselect();
+                        if(mButtons[i].isClick()) {
+                            mButtons[i].deselect();
                             des = false;
                         }
                     }
                     //if(des) {
                         
-                        //ship.setTarget(window.mapPixelToCoords(mousePos, starview));
+                        //ship.setTarget(mWindow.mapPixelToCoords(mMousePos, starview));
                     //}
                 }
-            } else if(state == GameStates::menu) {
+            } else if(mState == GameStates::menu) {
 
-            } else if(state == GameStates::battle) {
+            } else if(mState == GameStates::battle) {
 
             }
             break;
 
         case sf::Event::MouseWheelScrolled:
-            
-            mouseWheelDelta += event.mouseWheel.x / 10000000000.f;
-            if(mouseWheelDelta <= 0) {
-                mouseWheelDelta = 0.2f;
+
+            mMouseWheelDelta += mEvent.mouseWheel.x / 10000000000.f;
+            if(mMouseWheelDelta <= 0) {
+                mMouseWheelDelta = 0.2f;
             }
-            if(mouseWheelDelta >= 4) {
-                mouseWheelDelta = 4;
+            if(mMouseWheelDelta >= 4) {
+                mMouseWheelDelta = 4;
             }
-            if(mouseWheelDelta != 0) {
-                starview.setSize(constants::SCREENX * mouseWheelDelta, (constants::SCREENY - constants::UPPERGUIHEIGHT) * mouseWheelDelta);
+            if(mMouseWheelDelta != 0) {
+                mStarview.setSize(constants::SCREENX * mMouseWheelDelta, (constants::SCREENY - constants::UPPERGUIHEIGHT) * mMouseWheelDelta);
             }
             break;
 
@@ -507,85 +511,85 @@ void Game::getInput() {
 }
 
 void Game::update() {
-    mousePos = sf::Mouse::getPosition(window);
+    mMousePos = sf::Mouse::getPosition(mWindow);
 
-    if (stargui.visible)
+    if (mStargui.mVisible)
     {
-        for (int o = 0; o < stargui.currentStar.nump; o++)
+        for (int o = 0; o < mStargui.mCurrentStar.mNumP; o++)
         {
             //std::cout << "dist: " << stargui.currentStar.planets[o].distance << std::endl;
-            stargui.currentStar.planets[o].angle += stargui.currentStar.planets[o].angularVelocity * dt.asSeconds() * TimeController::timeDilation;
-            stargui.currentStar.planets[o].x = stargui.currentStar.guiShape.getPosition().x + stargui.currentStar.guiShape.getRadius() + std::cos(stargui.currentStar.planets[o].angle) * stargui.currentStar.planets[o].distance;
-            stargui.currentStar.planets[o].y = stargui.currentStar.guiShape.getPosition().y + stargui.currentStar.guiShape.getRadius() + std::sin(stargui.currentStar.planets[o].angle) * stargui.currentStar.planets[o].distance - (stargui.currentStar.planets[o].radius);
-            for (int p = 0; p < stargui.currentStar.planets[o].numn; p++)
+            mStargui.mCurrentStar.mPlanets[o].mAngle += mStargui.mCurrentStar.mPlanets[o].mAngularVelocity * mDt.asSeconds() * TimeController::mTimeDilation;
+            mStargui.mCurrentStar.mPlanets[o].mX = mStargui.mCurrentStar.mGuiShape.getPosition().x + mStargui.mCurrentStar.mGuiShape.getRadius() + std::cos(mStargui.mCurrentStar.mPlanets[o].mAngle) * mStargui.mCurrentStar.mPlanets[o].mDistance;
+            mStargui.mCurrentStar.mPlanets[o].mY = mStargui.mCurrentStar.mGuiShape.getPosition().y + mStargui.mCurrentStar.mGuiShape.getRadius() + std::sin(mStargui.mCurrentStar.mPlanets[o].mAngle) * mStargui.mCurrentStar.mPlanets[o].mDistance - (mStargui.mCurrentStar.mPlanets[o].mRadius);
+            for (int p = 0; p < mStargui.mCurrentStar.mPlanets[o].mNumn; p++)
             {
-                stargui.currentStar.planets[o].moons[p].angle += stargui.currentStar.planets[o].moons[p].angularVelocity * dt.asSeconds() * TimeController::timeDilation * 500;
-                stargui.currentStar.planets[o].moons[p].x = stargui.currentStar.planets[o].x + stargui.currentStar.planets[o].radius + std::cos(stargui.currentStar.planets[o].moons[p].angle) * stargui.currentStar.planets[o].moons[p].distance;
-                stargui.currentStar.planets[o].moons[p].y = stargui.currentStar.planets[o].y + stargui.currentStar.planets[o].radius + std::sin(stargui.currentStar.planets[o].moons[p].angle) * stargui.currentStar.planets[o].moons[p].distance - (stargui.currentStar.planets[o].moons[p].radius);
+                mStargui.mCurrentStar.mPlanets[o].mMoons[p].mAngle += mStargui.mCurrentStar.mPlanets[o].mMoons[p].mAngularVelocity * mDt.asSeconds() * TimeController::mTimeDilation * 500;
+                mStargui.mCurrentStar.mPlanets[o].mMoons[p].mX = mStargui.mCurrentStar.mPlanets[o].mX + mStargui.mCurrentStar.mPlanets[o].mRadius + std::cos(mStargui.mCurrentStar.mPlanets[o].mMoons[p].mAngle) * mStargui.mCurrentStar.mPlanets[o].mMoons[p].mDistance;
+                mStargui.mCurrentStar.mPlanets[o].mMoons[p].mY = mStargui.mCurrentStar.mPlanets[o].mY + mStargui.mCurrentStar.mPlanets[o].mRadius + std::sin(mStargui.mCurrentStar.mPlanets[o].mMoons[p].mAngle) * mStargui.mCurrentStar.mPlanets[o].mMoons[p].mDistance - (mStargui.mCurrentStar.mPlanets[o].mMoons[p].mRadius);
             }
         }
     }
 
     bool hovering = false;
-    if(state == GameStates::game) {
-        ResearchTab::update(dt.asSeconds()); 
-        if(stargui.visible) {
-            selectBoxVisible = true;
+    if(mState == GameStates::game) {
+        ResearchTab::update(mDt.asSeconds());
+        if(mStargui.mVisible) {
+            mSelectBoxVisible = true;
         } else {
-            selectBoxVisible = false;
+            mSelectBoxVisible = false;
         }
-        tick = 10.f * (500.f / TimeController::timeDilation);
-        if(timerTick >= tick) {
-            timerTick = 0;
+        mTick = 10.f * (500.f / TimeController::mTimeDilation);
+        if(mTimerTick >= mTick) {
+            mTimerTick = 0;
             // UPDATE EVERYTHING;
-            playerEmpire.setFunds(playerEmpire.getFunds() + startingSphere.getProduction());
+            mPlayerEmpire.setFunds(mPlayerEmpire.getFunds() + mStartingSphere.getProduction());
         }
 
-        if(animationTime >= animationCountDown) {
+        if(mAnimationTime >= mAnimationCountDown) {
             // UPDATE ANIMATIONS
             //anim.update();
             //publicGoal.update();
-            animationTime = 0;
+            mAnimationTime = 0;
         } else {
-            animationTime += dt.asSeconds();
+            mAnimationTime += mDt.asSeconds();
         }
 
         for(int k = 0; k < 6; k++) {
-            if(buttons[k].checkForClick(mousePos)) {
+            if(mButtons[k].checkForClick(mMousePos)) {
                 hovering = true;
             }
         }
-        if(parseButton.checkForClick(mousePos)) {
+        if(mParseButton.checkForClick(mMousePos)) {
             hovering = true;
         }
 
         for(int k = 0; k < constants::GRIDSIDENUMBER; k++) {
             for(int p = 0; p < constants::GRIDSIDENUMBER; p++) {
-                if(stars[k * constants::GRIDSIDENUMBER + p].exists) {
+                if(mStars[k * constants::GRIDSIDENUMBER + p].mExists) {
                     sf::RectangleShape shape;
                     shape.setPosition(k * constants::GRIDSIDELENGTH, p * constants::GRIDSIDELENGTH + constants::UPPERGUIHEIGHT);
                     shape.setSize(sf::Vector2f(constants::GRIDSIDELENGTH, constants::GRIDSIDELENGTH));
 
-                    if(shape.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                    if(shape.getGlobalBounds().contains(mMousePos.x, mMousePos.y)) {
                         hovering = true;
                     }
                 }
             }
         }
 
-        if(stargui.visible) {
-            if(stargui.hoveringOnPlanet(mousePos)) {
+        if(mStargui.mVisible) {
+            if(mStargui.hoveringOnPlanet(mMousePos)) {
                 hovering = true;
             }
         }
         //ship.update();
         //ship2.update();
         //std::cout << "OBAMA" << std::endl;
-        for(auto ship : playerEmpire.spaceships) {
+        for(auto ship : mPlayerEmpire.mSpaceships) {
             ship->update();
         }
         
-        EconomicsTab::update(playerEmpire.getFunds(), 1, 0);
+        EconomicsTab::update(mPlayerEmpire.getFunds(), 1, 0);
 
         /*switch(openTab) {
             case economic: 
@@ -599,39 +603,39 @@ void Game::update() {
     }
 
 
-    if((menuScreen.checkForHover(mousePos) && state == GameStates::menu) || hovering) {
-        window.setMouseCursor (handC);
-        isHoveringCursor = true;
-    } else if(isHoveringCursor) {
-        window.setMouseCursor (arrowC);
-        isHoveringCursor = false;
+    if((mMenuScreen.checkForHover(mMousePos) && mState == GameStates::menu) || hovering) {
+        mWindow.setMouseCursor (mHandC);
+        mIsHoveringCursor = true;
+    } else if(mIsHoveringCursor) {
+        mWindow.setMouseCursor (mArrowC);
+        mIsHoveringCursor = false;
     }
 
 
     sf::Vector2f movementVector;
-    if(movement.movingUp) {
-        movementVector.y = -1000.f * dt.asSeconds();
+    if(mMovement.movingUp) {
+        movementVector.y = -1000.f * mDt.asSeconds();
     }
-    if(movement.movingDown) {
-        movementVector.y = 1000.f * dt.asSeconds();
+    if(mMovement.movingDown) {
+        movementVector.y = 1000.f * mDt.asSeconds();
     }
-    if(movement.movingLeft) {
-        movementVector.x = -1000.f * dt.asSeconds();
+    if(mMovement.movingLeft) {
+        movementVector.x = -1000.f * mDt.asSeconds();
     }
-    if(movement.movingRight) {
-        movementVector.x = 1000.f * dt.asSeconds();
+    if(mMovement.movingRight) {
+        movementVector.x = 1000.f * mDt.asSeconds();
     }
 
-    starview.move(movementVector);
+    mStarview.move(movementVector);
 
 
 
     //std::cout << starview.getCenter().x << ":" << starview.getCenter().y << std::endl;
-    window.setTitle(std::to_string((int)(1.f / dt.asSeconds())));
+    //mWindow.setTitle(std::to_string((int)(1.f / mDt.asSeconds())));
 }
 
 void Game::render() {
-    window.clear();
+    mWindow.clear();
 
     //for(int i = 0; i < windowSize.height; i += GRIDSIDELENGTH) {
     //    sf::Vertex line[] = { sf::Vertex(sf::Vector2f(i, 0)), sf::Vertex(sf::Vector2f(i, windowSize.height)) };
@@ -639,108 +643,109 @@ void Game::render() {
     //    sf::Vertex otherLine[] = { sf::Vertex(sf::Vector2f(0, i)), sf::Vertex(sf::Vector2f(windowSize.height, i)) };
     //    window.draw(otherLine, 2,  sf::Lines);
     //}
-    if(state == GameStates::game) {
+    if(mState == GameStates::game) {
         // sf::CircleShape s;
         //s.setPosition(starview.getCenter().x - 10, starview.getCenter().y - 10);
         //s.setRadius(10);
         // s.setFillColor(sf::Color::Green);
 
-        window.setView(starview);
-        //window.draw(s);
-        //empires[0].render(&window);
-        //empires[1].render(&window);
-        playerEmpire.render(&window);
+        mWindow.setView(mStarview);
+        //mWindow.draw(s);
+        //empires[0].render(&mWindow);
+        //empires[1].render(&mWindow);
+        mPlayerEmpire.render(mWindow);
         int starti = 0, endi = 50;
-        if(starview.getCenter().x <= 960 * mouseWheelDelta) {
+        if(mStarview.getCenter().x <= 960 * mMouseWheelDelta) {
             starti = 0;
-            endi = 50 * mouseWheelDelta;
-        } else if(starview.getCenter().x >= 9000 * mouseWheelDelta) {
-            starti = 200 * mouseWheelDelta;
+            endi = 50 * mMouseWheelDelta;
+        } else if(mStarview.getCenter().x >= 9000 * mMouseWheelDelta) {
+            starti = 200 * mMouseWheelDelta;
             endi = constants::GRIDSIDENUMBER;
         } else {
-            starti = (int)((starview.getCenter().x - 960 * mouseWheelDelta) / constants::GRIDSIDELENGTH);
-            endi = (int)((starview.getCenter().x + 960 * mouseWheelDelta) / constants::GRIDSIDELENGTH);
+            starti = (int)((mStarview.getCenter().x - 960 * mMouseWheelDelta) / constants::GRIDSIDELENGTH);
+            endi = (int)((mStarview.getCenter().x + 960 * mMouseWheelDelta) / constants::GRIDSIDELENGTH);
         }
         int startj = 0, endj = 25;
-        if(starview.getCenter().y <= 600 * mouseWheelDelta) {
-            startj = 0 * mouseWheelDelta;
-            endj = 26 * mouseWheelDelta;
-        } else if(starview.getCenter().y >= 9000 * mouseWheelDelta) {
-            startj = 224 * mouseWheelDelta;
+        if(mStarview.getCenter().y <= 600 * mMouseWheelDelta) {
+            startj = 0 * mMouseWheelDelta;
+            endj = 26 * mMouseWheelDelta;
+        } else if(mStarview.getCenter().y >= 9000 * mMouseWheelDelta) {
+            startj = 224 * mMouseWheelDelta;
             endj = constants::GRIDSIDENUMBER;
         }  else {
-            startj = (int)((starview.getCenter().y - 600 * mouseWheelDelta) / constants::GRIDSIDELENGTH);
-            endj = (int)((starview.getCenter().y + 500 * mouseWheelDelta) / constants::GRIDSIDELENGTH);
+            startj = (int)((mStarview.getCenter().y - 600 * mMouseWheelDelta) / constants::GRIDSIDELENGTH);
+            endj = (int)((mStarview.getCenter().y + 500 * mMouseWheelDelta) / constants::GRIDSIDELENGTH);
         }
         for (int i = starti; i < endi ; i++)
         {
             for (int j = startj; j < endj; j++)
             {
                 int currentIndex = j + i * constants::GRIDSIDENUMBER;
-                if (stars[currentIndex].exists)
+                if (mStars[currentIndex].mExists)
                 {
                     //std::cout << stars[currentIndex].radius / SOLARRADIUS << " P:" << stars[currentIndex].x<< ":" << stars[currentIndex].y <<  std::endl;
-                    sf::CircleShape starCircle(stars[currentIndex].shape.getRadius());
-                    starCircle.setFillColor(stars[currentIndex].color);
-                    starCircle.setPosition(stars[currentIndex].x, stars[currentIndex].y + constants::UPPERGUIHEIGHT);
-                    window.draw(starCircle);
+                    sf::CircleShape starCircle(mStars[currentIndex].mShape.getRadius());
+                    starCircle.setFillColor(mStars[currentIndex].mColor);
+                    starCircle.setPosition(mStars[currentIndex].mX, mStars[currentIndex].mY + constants::UPPERGUIHEIGHT);
+                    mWindow.draw(starCircle);
                 }
             }
         }
 
 
-        if (selectBoxVisible)
+        if (mSelectBoxVisible)
         {
-            window.draw(selectBox);
+            mWindow.draw(mSelectBox);
+        }
+
+
+        mWindow.setView(mWindow.getDefaultView());
+
+        if (mStargui.mVisible)
+        {
+            mStargui.render(mWindow, TimeController::mTimeDilation, mEmpires, mPlayerEmpire);
         }
 
         
-        window.setView(window.getDefaultView());
-
-        if (stargui.visible)
-        {
-            stargui.render(&window, TimeController::timeDilation, empires, playerEmpire);
+        //ship.render(&mWindow, &mStargui.currentStar, mStargui.visible, starview);
+        //ship2.render(&mWindow, &mStargui.currentStar, mStargui.visible, starview);
+        for(auto ship : mPlayerEmpire.mSpaceships) {
+            ship->render(mWindow, &mStargui.mCurrentStar, mStargui.mVisible, mStarview);
         }
-
-        
-        //ship.render(&window, &stargui.currentStar, stargui.visible, starview);
-        //ship2.render(&window, &stargui.currentStar, stargui.visible, starview);
-        for(auto ship : playerEmpire.spaceships) {
-            ship->render(&window, &stargui.currentStar, stargui.visible, starview);
-        } 
-        upGUI.render(&window);
+        mUpGUI.render(mWindow);
         switch(openTab) {
-            case Tabs::economic: EconomicsTab::render(&window);
+            case Tabs::economic: EconomicsTab::render(mWindow);
                     break;
-            case Tabs::building: BuildTab::render(&window);
+            case Tabs::building: BuildTab::render(mWindow);
                     break;
-            case Tabs::ships: SpaceshipTab::render(&window);
+            case Tabs::ships: SpaceshipTab::render(mWindow);
                     break;
-            case Tabs::buildShips: SpaceshipBuildTab::render(&window);
+            case Tabs::buildShips: SpaceshipBuildTab::render(mWindow);
                     break;
-            case Tabs::research: ResearchTab::render(&window);
+            case Tabs::research: ResearchTab::render(mWindow);
                     break;
-            case Tabs::playerEmpire:  PlayerEmpireTab::render(&window);
+            case Tabs::playerEmpire: PlayerEmpireTab::render(mWindow);
                     break;
+            case Tabs::analizeShips: SpaceshipAnalizeTab::render(mWindow);
             default:  break;
         }
-        window.draw(stargui.timeDilationText);
-        window.draw(title);
-        
-        playerEmpire.renderGUI(&window);
+        mWindow.draw(mStargui.mTimeDilationText);
+        mWindow.draw(mTitle);
+
+        mPlayerEmpire.renderGUI(mWindow);
 
         for(int i = 0; i < 6; i++) {
-            buttons[i].render(&window);
+            mButtons[i].render(mWindow);
         }
-        //anim.render(&window);
-        //publicGoal.render(&window);
-        parseButton.render(&window);
-        GUI_Alert::render(&window);
-    } else if(state == GameStates::menu) {
-        window.setView(window.getDefaultView());
-        menuScreen.render(&window);
-    } else if(state == GameStates::battle) {
-        sampleBattle.render(&window);
+        //anim.render(&mWindow);
+        //publicGoal.render(&mWindow);
+        mParseButton.render(mWindow);
+        GUI_Alert::render(mWindow);
+    } else if(mState == GameStates::menu) {
+        mWindow.setView(mWindow.getDefaultView());
+        mMenuScreen.render(mWindow);
+    } else if(mState == GameStates::battle) {
+        mSampleBattle.render(mWindow);
     }
-    window.display();
+    mWindow.display();
 }

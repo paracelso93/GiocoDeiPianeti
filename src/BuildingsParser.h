@@ -115,10 +115,10 @@ class BuildingsParser {
             return b;
         }
         static void printBuilding(Building *b) {
-            std::cout << "Building: \nname: " << b->name << "\ncost: " << b->cost << std::endl;
+            std::cout << "Building: \nname: " << b->mName << "\ncost: " << b->mCost << std::endl;
         }
     public:  
-        static std::vector<Building *> buildings;
+        static std::vector<Building *> mBuildings;
         static void setup() {
             parse();
         }
@@ -131,7 +131,7 @@ class BuildingsParser {
                 Building *b = parseBuilding(line);
                 if(b != nullptr) {
                     //printBuilding(b);
-                    buildings.push_back(b);
+                    mBuildings.push_back(b);
                 }
             }
             file.close();

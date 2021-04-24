@@ -50,6 +50,7 @@ enum class Tabs {
     buildShips,
     research,
     playerEmpire,
+    analizeShips,
     none
 };
 

@@ -7,19 +7,19 @@
 class GridNode {
     public:  
         void setup(int x, int y, int w, int h);
-        void render(sf::RenderWindow *window);
-        sf::RectangleShape shape;
+        void render(sf::RenderWindow& window);
+        sf::RectangleShape mShape;
     private:
         
     public:  
         /// A*
-        int privateGoal;
-        int publicGoal;
-        bool isObstacle;
+        int mPrivateGoal;
+        int mPublicGoal;
+        bool mIsObstacle;
         bool isPath;
-        bool isSearched;
-        std::vector<GridNode *> adjacentNodes;
-        GridNode *parent;
+        bool mIsSearched;
+        std::vector<GridNode *> mAdjacentNodes;
+        GridNode *mParent;
         void setupAStar(bool isObstacle, int privateGoal, int publicGoal);
 };
 

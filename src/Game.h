@@ -21,6 +21,7 @@
 #include "ResearchParser.h"
 #include "PlayerEmpireTab.h"
 #include "Battle.h"
+#include "SpaceshipAnalizeTab.h"
 
 enum class GameStates {
     game,
@@ -45,60 +46,60 @@ struct Movement {
 
 class Game {
     public:  
-        Game() : window(sf::VideoMode(constants::SCREENX, constants::SCREENY), "GIOCO DEI PIANETI") {}
+        Game() : mWindow(sf::VideoMode(constants::SCREENX, constants::SCREENY), "GIOCO DEI PIANETI") {}
         ~Game() {}
         void setup();
         void getInput();
         void update();
         void render();
         void clear() {}
-        bool getClose() { return !(this->window.isOpen()); }
+        bool getClose() { return !(this->mWindow.isOpen()); }
 
     private:  
-        sf::RenderWindow window;
-        static DysonSphere startingSphere;
-        static GameStates state;
-        static Empire empires[2];
-        static Star* stars;
-        static PlayerEmpire playerEmpire;
-        static sf::Font font;
+        sf::RenderWindow mWindow;
+        static DysonSphere mStartingSphere;
+        static GameStates mState;
+        static Empire mEmpires[2];
+        static Star* mStars;
+        static PlayerEmpire mPlayerEmpire;
+        static sf::Font mFont;
         
 
     private:
-        sf::Texture loadingTexture;
-        sf::Sprite loadingSprite;
-        sf::View starview;
-        float mouseWheelDelta;
-        Movement movement;
-        float animationCountDown;
-        float animationTime;
-        sf::Music backgroundMusic;
-        sf::Image cursorImg;
-        sf::Cursor arrowC;
-        sf::Cursor handC;
-        sf::Image icon;
-        float tick;
-        float timerTick;
-        sf::CircleShape selectBox;
-        GUI_Button shipsButton;
-        GUI_Button parseButton;
-        sf::Text title;
-        StarGUI stargui;
-        sf::Event event;
-        GUI_Button buttons[6];
-        sf::Vector2i mousePos;
-        bool isHoveringCursor;
-        GUI_Panel upGUI;
-        Menu menuScreen;
-        sf::Time dt;
-        sf::Clock clock;
-        bool hasSelectedStar;
-        bool lookingAtPlanet;
-        bool selectBoxVisible;
+        sf::Texture mLoadingTexture;
+        sf::Sprite mLoadingSprite;
+        sf::View mStarview;
+        float mMouseWheelDelta;
+        Movement mMovement;
+        float mAnimationCountDown;
+        float mAnimationTime;
+        sf::Music mBackgroundMusic;
+        sf::Image mCursorImg;
+        sf::Cursor mArrowC;
+        sf::Cursor mHandC;
+        sf::Image mIcon;
+        float mTick;
+        float mTimerTick;
+        sf::CircleShape mSelectBox;
+        GUI_Button mShipsButton;
+        GUI_Button mParseButton;
+        sf::Text mTitle;
+        StarGUI mStargui;
+        sf::Event mEvent;
+        GUI_Button mButtons[6];
+        sf::Vector2i mMousePos;
+        bool mIsHoveringCursor;
+        GUI_Panel mUpGUI;
+        Menu mMenuScreen;
+        sf::Time mDt;
+        sf::Clock mClock;
+        bool mHasSelectedStar;
+        bool mLookingAtPlanet;
+        bool mSelectBoxVisible;
 
     // TEMP
-        Battle sampleBattle;
-        BattleMap battleMap;
+        Battle mSampleBattle;
+        BattleMap mBattleMap;
 
     private:  
         static void openEconomicsTab() {
@@ -125,8 +126,12 @@ class Game {
             openTab = Tabs::research;
         }
 
+        static void openAnalizeShipTab() {
+            openTab = Tabs::analizeShips;
+        }
+
         static void quitGame() {
-            state = GameStates::quit;
+            mState = GameStates::quit;
         }
 
         static void closeTab() {

@@ -8,12 +8,12 @@
 class GUI_Label  
 {
 	private:
-		std::string textStr;
-		sf::Text text;
-		sf::Color color;
-		sf::Font font;
-		int size;
-		sf::Vector2f position;
+		std::string mTextStr;
+		sf::Text mText;
+		sf::Color mColor;
+		sf::Font mFont;
+		int mSize;
+		sf::Vector2f mPosition;
 
 	public:
 
@@ -25,10 +25,10 @@ class GUI_Label
 		sf::Font font,
 		int size,
 		sf::Vector2f position);
-		void render(sf::RenderWindow *window);
+		void render(sf::RenderWindow& window);
 		void setString(std::string s) {
-			 this->textStr = s; 
-			 this->text.setString(textStr);
+			 this->mTextStr = s;
+			 this->mText.setString(mTextStr);
 		}
 
 

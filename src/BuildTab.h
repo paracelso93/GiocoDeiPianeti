@@ -9,29 +9,29 @@ class BuildTab {
     public:  
         static void setup(sf::Font f, void (*close)());
         
-        static std::vector<Building* > buildings;
-        static std::vector<GUI_Label* > buildingLabels;
-        static std::vector<GUI_Button* > buildingButtons; 
+        static std::vector<Building* > mBuildings;
+        static std::vector<GUI_Label* > mBuildingLabels;
+        static std::vector<GUI_Button* > mBuildingButtons;
         static void addBuilding(Building *b, Planet *p, PlayerEmpire *o) {
-            buildings.push_back(b);
+            mBuildings.push_back(b);
             GUI_Label *l = new GUI_Label();
-            l->setup(b->name, sf::Color::White, font, 20, {static_cast<float>((((int)(buildings.size()) - 1) % 3) * 100 + 30), static_cast<float>(((int)buildings.size() - 1) / 3) * 150.f + 260.f});
-            buildingLabels.push_back(l);
+            l->setup(b->mName, sf::Color::White, mFont, 20, {static_cast<float>((((int)(mBuildings.size()) - 1) % 3) * 100 + 30), static_cast<float>(((int)mBuildings.size() - 1) / 3) * 150.f + 260.f});
+            mBuildingLabels.push_back(l);
             GUI_Button *d = new GUI_Button();
-            currentPlanet = p;
+            mCurrentPlanet = p;
             sf::RectangleShape s;
-            empire = o;
+            mEmpire = o;
             s.setSize({70, 70});
-            s.setPosition(((((int)buildings.size()) - 1) % 3) * 100 + 30, (((int)(buildings.size()) - 1) / 3) * 150 + 200);
-            d->setup(font, s,  sf::Color::Transparent, sf::Color::Transparent, " ", 1);
-            buildingButtons.push_back(d);
+            s.setPosition(((((int)mBuildings.size()) - 1) % 3) * 100 + 30, (((int)(mBuildings.size()) - 1) / 3) * 150 + 200);
+            d->setup(mFont, s,  sf::Color::Transparent, sf::Color::Transparent, " ", 1);
+            mBuildingButtons.push_back(d);
         }
 
         static void build() {
-            if(empire->getFunds() >= currentBuilding->cost) {
-                currentPlanet->buildings.push_back(currentBuilding);
-                auto it = std::find(currentPlanet->availbleBuildings.begin(), currentPlanet->availbleBuildings.end(), currentBuilding);
-                currentPlanet->availbleBuildings.erase(it);
+            if(mEmpire->getFunds() >= mCurrentBuilding->mCost) {
+                mCurrentPlanet->mBuildings.push_back(mCurrentBuilding);
+                auto it = std::find(mCurrentPlanet->mAvailableBuildings.begin(), mCurrentPlanet->mAvailableBuildings.end(), mCurrentBuilding);
+                mCurrentPlanet->mAvailableBuildings.erase(it);
                 /*for(Building * b : currentPlanet->buildings) {
                     std::cout << b->name << ";";
                 }
@@ -39,37 +39,37 @@ class BuildTab {
                 std::cout << std::endl;*/
 
                 empty();
-                for(Building * b : currentPlanet->availbleBuildings) {
-                    addBuilding(b, currentPlanet, empire);
+                for(Building * b : mCurrentPlanet->mAvailableBuildings) {
+                    addBuilding(b, mCurrentPlanet, mEmpire);
                 }
-                empire->setFunds(empire->getFunds() - currentBuilding->cost);
+                mEmpire->setFunds(mEmpire->getFunds() - mCurrentBuilding->mCost);
             }
         }
 
         static void empty() {
-            buildings.clear();
+            mBuildings.clear();
 
-            for(auto l : buildingLabels) {
+            for(auto l : mBuildingLabels) {
                 delete l;
             }
-            buildingLabels.clear();
+            mBuildingLabels.clear();
 
-            for(auto b : buildingButtons) {
+            for(auto b : mBuildingButtons) {
                 delete b;
             }
-            buildingButtons.clear();
+            mBuildingButtons.clear();
         }
 
-        static void render(sf::RenderWindow *window);
+        static void render(sf::RenderWindow& window);
         static void getInput(sf::Vector2i mousePos);
 
     private:   
-        static GUI_Panel panel;
-        static GUI_Label title;
-        static Planet *currentPlanet;
-        static Building *currentBuilding;
-        static PlayerEmpire *empire;
-        static sf::Font font;
+        static GUI_Panel mPanel;
+        static GUI_Label mTitle;
+        static Planet *mCurrentPlanet;
+        static Building *mCurrentBuilding;
+        static PlayerEmpire *mEmpire;
+        static sf::Font mFont;
 
 };
 

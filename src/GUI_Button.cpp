@@ -11,52 +11,52 @@ GUI_Button::~GUI_Button()
 }
 
 void GUI_Button::setup(sf::Font f, sf::RectangleShape shape,  sf::Color color, sf::Color onClick, std::string content, int charSize) {
-    this->shape = shape;
-    this->font = f;
-    this->color = color;
-    this->onClickColor = onClick;
-    this->content = content;
-    this->shape.setFillColor(color);
-    this->text.setPosition({static_cast<float>(this->shape.getPosition().x + ((this->shape.getSize().x / 2.0) - (((float)strlen(content.c_str()) - 1) * (charSize)) / 2.0)), this->shape.getPosition().y + (this->shape.getSize().y - charSize) / 2});
-    this->text.setCharacterSize(charSize);
-    this->text.setFillColor(sf::Color::White);
-    this->text.setFont(font);
-    this->text.setString(content);
+    this->mShape = shape;
+    this->mFont = f;
+    this->mColor = color;
+    this->mOnClickColor = onClick;
+    this->mContent = content;
+    this->mShape.setFillColor(color);
+    this->mText.setPosition({static_cast<float>(this->mShape.getPosition().x + ((this->mShape.getSize().x / 2.0) - (((float)strlen(content.c_str()) - 1) * (charSize)) / 2.0)), this->mShape.getPosition().y + (this->mShape.getSize().y - charSize) / 2});
+    this->mText.setCharacterSize(charSize);
+    this->mText.setFillColor(sf::Color::White);
+    this->mText.setFont(mFont);
+    this->mText.setString(content);
 }
 
 void GUI_Button::deselect() {
-    this->shape.setFillColor(color);
+    this->mShape.setFillColor(mColor);
 }
 
 bool GUI_Button::checkForClick(sf::Vector2i mousePos) {
-    this->isClicked = this->shape.getGlobalBounds().contains(mousePos.x, mousePos.y);
-    return this->isClicked;
+    this->mIsClicked = this->mShape.getGlobalBounds().contains(mousePos.x, mousePos.y);
+    return this->mIsClicked;
 }
 
 bool GUI_Button::isClick() {
-    return this->isClicked;
+    return this->mIsClicked;
 }
 
 void GUI_Button::setFunction(void (*function)()) {
-    f = function;
+    mFunc = function;
 }
 
 void GUI_Button::click() {
-    f();
-    this->shape.setFillColor(this->onClickColor);
+    mFunc();
+    this->mShape.setFillColor(this->mOnClickColor);
 }
 
-void GUI_Button::render(sf::RenderWindow *window) {
-    window->draw(this->shape);
-    window->draw(this->text);
-    if(hasSprite) {
-        window->draw(this->sprite);
+void GUI_Button::render(sf::RenderWindow& window) {
+    window.draw(this->mShape);
+    window.draw(this->mText);
+    if(mHasSprite) {
+        window.draw(this->mSprite);
     }
 }
 
 void GUI_Button::addImage(std::string path) {
-    this->hasSprite = true;
-    this->tex.loadFromFile(path);
-    this->sprite.setTexture(this->tex);
-    this->sprite.setPosition(this->shape.getPosition());
+    this->mHasSprite = true;
+    this->mTex.loadFromFile(path);
+    this->mSprite.setTexture(this->mTex);
+    this->mSprite.setPosition(this->mShape.getPosition());
 }

@@ -690,74 +690,74 @@ void Parser::parseGalaxy(Star stars[])
             }
             int currentIndex = i * constants::GRIDSIDENUMBER + j;
 
-            stars[currentIndex].x = x;
-            stars[currentIndex].y = y;
-            stars[currentIndex].exists = exists;
-            if (stars[currentIndex].exists)
+            stars[currentIndex].mX = x;
+            stars[currentIndex].mY = y;
+            stars[currentIndex].mExists = exists;
+            if (stars[currentIndex].mExists)
             {
-                stars[currentIndex].radius = radius;
+                stars[currentIndex].mRadius = radius;
                 double sampleMass = sqrt(sqrt(pow(radius, 5)));
-                stars[currentIndex].mass = sampleMass;
-                stars[currentIndex].color.r = r;
-                stars[currentIndex].color.g = g;
-                stars[currentIndex].color.b = b;
-                stars[currentIndex].color.a = a;
-                stars[currentIndex].guiShape.setPosition(300, constants::STARGUIY + constants::UPPERGUIHEIGHT);
-                stars[currentIndex].guiShape.setFillColor(sf::Color(r, g, b, a));
-                stars[currentIndex].guiShape.setRadius(radius * 8);
-                stars[currentIndex].shape.setRadius(radius * 2);
-                stars[currentIndex].shape.setPosition(stars[currentIndex].x, stars[currentIndex].y);
-                stars[currentIndex].shape.setFillColor(sf::Color(r, g, b, a));
-                stars[currentIndex].nump = planetNum;
-                stars[currentIndex].name = starName;
+                stars[currentIndex].mMass = sampleMass;
+                stars[currentIndex].mColor.r = r;
+                stars[currentIndex].mColor.g = g;
+                stars[currentIndex].mColor.b = b;
+                stars[currentIndex].mColor.a = a;
+                stars[currentIndex].mGuiShape.setPosition(300, constants::STARGUIY + constants::UPPERGUIHEIGHT);
+                stars[currentIndex].mGuiShape.setFillColor(sf::Color(r, g, b, a));
+                stars[currentIndex].mGuiShape.setRadius(radius * 8);
+                stars[currentIndex].mShape.setRadius(radius * 2);
+                stars[currentIndex].mShape.setPosition(stars[currentIndex].mX, stars[currentIndex].mY);
+                stars[currentIndex].mShape.setFillColor(sf::Color(r, g, b, a));
+                stars[currentIndex].mNumP = planetNum;
+                stars[currentIndex].mName = starName;
                 //std::cout << planetNum << std::endl;
                 for (int alfa = 0; alfa < planetNum; alfa++)
                 {
-                    stars[currentIndex].planets[alfa].radius = pradius[alfa];
-                    stars[currentIndex].planets[alfa].size = sizes[alfa];
+                    stars[currentIndex].mPlanets[alfa].mRadius = pradius[alfa];
+                    stars[currentIndex].mPlanets[alfa].mSize = sizes[alfa];
                     double samplePMass;
-                    if(stars[currentIndex].planets[alfa].size == constants::PlanetSize::Psmall) {
-                        samplePMass = pow(stars[currentIndex].planets[alfa].radius, 1 / 0.3);
-                    } else if(stars[currentIndex].planets[alfa].size == constants::PlanetSize::Pnormal) {
-                        samplePMass = pow(stars[currentIndex].planets[alfa].radius, 1 / 0.5);
+                    if(stars[currentIndex].mPlanets[alfa].mSize == constants::PlanetSize::Psmall) {
+                        samplePMass = pow(stars[currentIndex].mPlanets[alfa].mRadius, 1 / 0.3);
+                    } else if(stars[currentIndex].mPlanets[alfa].mSize == constants::PlanetSize::Pnormal) {
+                        samplePMass = pow(stars[currentIndex].mPlanets[alfa].mRadius, 1 / 0.5);
                     } else {
-                        samplePMass = pow(stars[currentIndex].planets[alfa].radius / 22.6, -1 / 0.0886);
+                        samplePMass = pow(stars[currentIndex].mPlanets[alfa].mRadius / 22.6, -1 / 0.0886);
                     }
 
-                    stars[currentIndex].planets[alfa].mass = samplePMass;
+                    stars[currentIndex].mPlanets[alfa].mMass = samplePMass;
 
-                    stars[currentIndex].planets[alfa].angularVelocity = pvelocity[alfa];
-                    stars[currentIndex].planets[alfa].angle = 0.f;
-                    stars[currentIndex].planets[alfa].color.r = pr[alfa];
-                    stars[currentIndex].planets[alfa].color.g = pg[alfa];
-                    stars[currentIndex].planets[alfa].color.b = pb[alfa];
-                    stars[currentIndex].planets[alfa].color.a = pa[alfa];
-                    stars[currentIndex].planets[alfa].numn = moonNum[alfa];
-                    stars[currentIndex].planets[alfa].name = pname[alfa];
+                    stars[currentIndex].mPlanets[alfa].mAngularVelocity = pvelocity[alfa];
+                    stars[currentIndex].mPlanets[alfa].mAngle = 0.f;
+                    stars[currentIndex].mPlanets[alfa].mColor.r = pr[alfa];
+                    stars[currentIndex].mPlanets[alfa].mColor.g = pg[alfa];
+                    stars[currentIndex].mPlanets[alfa].mColor.b = pb[alfa];
+                    stars[currentIndex].mPlanets[alfa].mColor.a = pa[alfa];
+                    stars[currentIndex].mPlanets[alfa].mNumn = moonNum[alfa];
+                    stars[currentIndex].mPlanets[alfa].mName = pname[alfa];
 
                     if(alfa == 0) {
-                        stars[currentIndex].planets[alfa].distance = 50 + 50 + (stars[currentIndex].planets[alfa].radius * 10);
+                        stars[currentIndex].mPlanets[alfa].mDistance = 50 + 50 + (stars[currentIndex].mPlanets[alfa].mRadius * 10);
                     } else {
-                        stars[currentIndex].planets[alfa].distance = stars[currentIndex].planets[alfa - 1].distance + 50 + (stars[currentIndex].planets[alfa].radius * 10);
+                        stars[currentIndex].mPlanets[alfa].mDistance = stars[currentIndex].mPlanets[alfa - 1].mDistance + 50 + (stars[currentIndex].mPlanets[alfa].mRadius * 10);
                     }
 
-                    stars[currentIndex].orbits[alfa].setFillColor(sf::Color::Transparent);
-                    stars[currentIndex].orbits[alfa].setOutlineColor(sf::Color(255, 255, 255, 100));
-                    stars[currentIndex].orbits[alfa].setOutlineThickness (4);
+                    stars[currentIndex].mOrbits[alfa].setFillColor(sf::Color::Transparent);
+                    stars[currentIndex].mOrbits[alfa].setOutlineColor(sf::Color(255, 255, 255, 100));
+                    stars[currentIndex].mOrbits[alfa].setOutlineThickness (4);
 
-                    stars[currentIndex].orbits[alfa].setRadius(stars[currentIndex].planets[alfa].distance);
-                    stars[currentIndex].orbits[alfa].setPosition(300 - stars[currentIndex].planets[alfa].distance + stars[currentIndex].radius * 8, 885 - stars[currentIndex].planets[alfa].distance + stars[currentIndex].radius * 8);
+                    stars[currentIndex].mOrbits[alfa].setRadius(stars[currentIndex].mPlanets[alfa].mDistance);
+                    stars[currentIndex].mOrbits[alfa].setPosition(300 - stars[currentIndex].mPlanets[alfa].mDistance + stars[currentIndex].mRadius * 8, 885 - stars[currentIndex].mPlanets[alfa].mDistance + stars[currentIndex].mRadius * 8);
 
                     for (int beta = 0; beta < moonNum[alfa]; beta++)
                     {
-                        stars[currentIndex].planets[alfa].moons[beta].radius = mradius[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].mass = mmass[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].angularVelocity = mvelocity[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].angle = 0.f;
-                        stars[currentIndex].planets[alfa].moons[beta].color.r = mr[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].color.g = mg[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].color.b = mb[beta][alfa];
-                        stars[currentIndex].planets[alfa].moons[beta].color.a = ma[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mRadius = mradius[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mMass = mmass[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mAngularVelocity = mvelocity[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mAngle = 0.f;
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mColor.r = mr[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mColor.g = mg[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mColor.b = mb[beta][alfa];
+                        stars[currentIndex].mPlanets[alfa].mMoons[beta].mColor.a = ma[beta][alfa];
 
                         //if(stars[currentIndex].planets[alfa].radius <= stars[currentIndex].planets[alfa].moons[beta].radius) {
                         //    std::cout << "ERROR, MOON TOO BIG!\nPlanetRadius: " << stars[currentIndex].planets[alfa].radius << "\nMoonRadius: " << stars[currentIndex].planets[alfa].moons[beta].radius << std::endl;
@@ -765,9 +765,9 @@ void Parser::parseGalaxy(Star stars[])
                         //}
 
                         if(beta == 0) {
-                            stars[currentIndex].planets[alfa].moons[beta].distance = 25 * (beta + 1) + (stars[currentIndex].planets[alfa].radius) * 5;
+                            stars[currentIndex].mPlanets[alfa].mMoons[beta].mDistance = 25 * (beta + 1) + (stars[currentIndex].mPlanets[alfa].mRadius) * 5;
                         } else {
-                            stars[currentIndex].planets[alfa].moons[beta].distance = 25 * (beta + 1) + stars[currentIndex].planets[alfa].moons[beta - 1].distance;
+                            stars[currentIndex].mPlanets[alfa].mMoons[beta].mDistance = 25 * (beta + 1) + stars[currentIndex].mPlanets[alfa].mMoons[beta - 1].mDistance;
                         }
                     }
                 }
@@ -798,20 +798,20 @@ void Parser::createGalaxy(Star stars[])
             //if(stars[(int)stars.size() - 1].exists) {
             //    std::cout << "a\n";
             //}
-            if (stars[currentIndex].exists)
+            if (stars[currentIndex].mExists)
             {
                 file << currentIndex
-                     << ": x:" << stars[currentIndex].x
-                     << " y:" << stars[currentIndex].y
+                     << ": x:" << stars[currentIndex].mX
+                     << " y:" << stars[currentIndex].mY
                      << " exists:1"
-                     << " name:" << stars[currentIndex].name
-                     << " radius:" << stars[currentIndex].radius
-                     << " color:" << (int)stars[currentIndex].color.r << "," << (int)stars[currentIndex].color.g << "," << (int)stars[currentIndex].color.b << "," << (int)stars[currentIndex].color.a << ","
+                     << " name:" << stars[currentIndex].mName
+                     << " radius:" << stars[currentIndex].mRadius
+                     << " color:" << (int)stars[currentIndex].mColor.r << "," << (int)stars[currentIndex].mColor.g << "," << (int)stars[currentIndex].mColor.b << "," << (int)stars[currentIndex].mColor.a << ","
                      << " planets:";
-                for (int k = 0; k < stars[currentIndex].nump; k++)
+                for (int k = 0; k < stars[currentIndex].mNumP; k++)
                 {
-                    file << "{name:" << stars[currentIndex].planets[k].name <<" radius:" << stars[currentIndex].planets[k].radius;
-                    switch(stars[currentIndex].planets[k].size) {
+                    file << "{name:" << stars[currentIndex].mPlanets[k].mName <<" radius:" << stars[currentIndex].mPlanets[k].mRadius;
+                    switch(stars[currentIndex].mPlanets[k].mSize) {
                         case constants::PlanetSize::Psmall: file << "s";
                             break;
                         case constants::PlanetSize::Pnormal: file << "m";
@@ -819,10 +819,10 @@ void Parser::createGalaxy(Star stars[])
                         case constants::PlanetSize::Plarge: file << "l";
                             break;
                     }
-                    file << " velocity:" << stars[currentIndex].planets[k].angularVelocity << " color:" << (int)stars[currentIndex].planets[k].color.r << "," << (int)stars[currentIndex].planets[k].color.g << "," << (int)stars[currentIndex].planets[k].color.b << "," << (int)stars[currentIndex].planets[k].color.a << ", moons:";
-                    for (int t = 0; t < stars[currentIndex].planets[k].numn; t++)
+                    file << " velocity:" << stars[currentIndex].mPlanets[k].mAngularVelocity << " color:" << (int)stars[currentIndex].mPlanets[k].mColor.r << "," << (int)stars[currentIndex].mPlanets[k].mColor.g << "," << (int)stars[currentIndex].mPlanets[k].mColor.b << "," << (int)stars[currentIndex].mPlanets[k].mColor.a << ", moons:";
+                    for (int t = 0; t < stars[currentIndex].mPlanets[k].mNumn; t++)
                     {
-                        file << "[radius:" << stars[currentIndex].planets[k].moons[t].radius << " mass:" << stars[currentIndex].planets[k].moons[t].mass << " velocity:" << stars[currentIndex].planets[k].moons[t].angularVelocity <<  " color:" << (int)stars[currentIndex].planets[k].moons[t].color.r << "," << (int)stars[currentIndex].planets[k].moons[t].color.g << "," << (int)stars[currentIndex].planets[k].moons[t].color.b << "," << (int)stars[currentIndex].planets[k].moons[t].color.a << ",]";
+                        file << "[radius:" << stars[currentIndex].mPlanets[k].mMoons[t].mRadius << " mass:" << stars[currentIndex].mPlanets[k].mMoons[t].mMass << " velocity:" << stars[currentIndex].mPlanets[k].mMoons[t].mAngularVelocity <<  " color:" << (int)stars[currentIndex].mPlanets[k].mMoons[t].mColor.r << "," << (int)stars[currentIndex].mPlanets[k].mMoons[t].mColor.g << "," << (int)stars[currentIndex].mPlanets[k].mMoons[t].mColor.b << "," << (int)stars[currentIndex].mPlanets[k].mMoons[t].mColor.a << ",]";
                     }
                     file << "}";
                 }
@@ -830,7 +830,7 @@ void Parser::createGalaxy(Star stars[])
             }
             else
             {
-                file << currentIndex << ": x:" << stars[currentIndex].x << " y:" << stars[currentIndex].y << " exists:0;\n";
+                file << currentIndex << ": x:" << stars[currentIndex].mX << " y:" << stars[currentIndex].mY << " exists:0;\n";
             }
         }
         if(i % (constants::GRIDSIDENUMBER / 17) == 0)
